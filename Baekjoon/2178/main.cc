@@ -23,13 +23,14 @@ void BFS(int startx, int starty)
         {            
             int nx = x + dx[i];
             int ny = y + dy[i];
-            if(nx < 1 && ny > N && ny < 1 && nx > M)
+            if(nx < 1 || ny > N || ny < 1 || nx > M)
                 continue;
             if(maze[ny][nx] == 1 && !visited[ny][nx])
             {
+                maze[ny][nx] = maze[y][x] + 1;
                 q.push(make_pair(ny, nx));
                 visited[ny][nx] = true;
-                Count++;
+                
             }
         }
     }
@@ -44,12 +45,14 @@ int main()
         cin >> str;
         for(int j = 1; j <= M; j++)
         {
-            maze[i][j] = str[j] - '0';
+            maze[i][j] = str[j - 1] - '0';
+            
         }
+        
     }
 
     BFS(1, 1);
 
-    cout << Count;
+    cout << maze[N][M] << endl;
 }
 
