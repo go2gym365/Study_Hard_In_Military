@@ -30,7 +30,6 @@ void BFS(int startx, int starty)
                 maze[ny][nx] = maze[y][x] + 1;
                 q.push(make_pair(ny, nx));
                 visited[ny][nx] = true;
-                
             }
         }
     }
@@ -46,9 +45,7 @@ int main()
         for(int j = 1; j <= M; j++)
         {
             maze[i][j] = str[j - 1] - '0';
-            
         }
-        
     }
 
     BFS(1, 1);
