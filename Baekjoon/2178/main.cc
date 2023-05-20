@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-int N, M, Count = 2;
+int N, M;
 vector<vector<bool>> visited(101, vector<bool>(101, false));
 vector<vector<int>> maze(101, vector<int>(101, 0));
 
