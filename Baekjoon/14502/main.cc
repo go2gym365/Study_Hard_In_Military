@@ -61,7 +61,7 @@ int BFS()
                 
         }
     }
-
+    
     for (auto v : virus)
     {
         lab[v.second][v.first] = 0;

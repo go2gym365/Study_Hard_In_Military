@@ -1,19 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int N, M;
-vector<vector<int>>lab(8, vector<int>(8, 0));
-vector<vector<bool>>visited(8, vector<bool>(8, 0));
+int N, M, answer = 0;
+vector<vector<int>> lab(8, vector<int>(8, 0));
 
 int dx[4] = {-1, 0, 1, 0};
 int dy[4] = {0, -1, 0, 1};
 
-int answer = 0;
-
 int BFS()
 {
     queue<pair<int, int>> q;
-
+    
     for(int i = 0; i < N; i++)
     {
         for(int j = 0; j < M; j++)
@@ -22,7 +19,7 @@ int BFS()
                 q.push({i, j});
         }
     }
-
+    
     vector<pair<int, int>> virus;
 
     while(!q.empty())
@@ -36,36 +33,34 @@ int BFS()
             int nx = x + dx[i];
             int ny = y + dy[i];
 
-            if(ny >= N || ny < 0 || nx < 0 || nx >= M)
+            if(nx >= M || nx < 0 || ny >= N || ny < 0)
                 continue;
+            
             if(lab[ny][nx] == 0)
             {
                 lab[ny][nx] = 2;
                 virus.push_back({ny, nx});
                 q.push({ny, nx});
-            }            
+            }
         }
     }
-    
+
     int ret = 0;
 
-    for (int i = 0; i < N; i++)
+    for(int i = 0; i < N; i++)
     {
-        for (int j = 0; j < M; j++)
+        for(int j = 0; j < M; j++)
         {
-            if (lab[i][j] == 0) 
-            {
+            if(lab[i][j]==0)
                 ret++;
-            }
-                
         }
     }
 
-    for (auto v : virus)
+    for(auto v : virus)
     {
-        lab[v.second][v.first] = 0;
+        lab[v.first][v.second] = 0;
     }
-    
+
     return ret;
 }
 
@@ -78,9 +73,9 @@ void combination(int cnt)
         return;
     }
 
-    for(int i=0; i<N; i++)
-     {
-        for(int j=0; j<M; j++) 
+    for(int i = 0; i < N; i++)
+    {
+        for(int j = 0; j < M; j++)
         {
             if(lab[i][j] != 0) 
                 continue;
@@ -91,15 +86,9 @@ void combination(int cnt)
     }
 }
 
-
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
-    cout.tie(0);
-
     cin >> N >> M;
-
     for(int i = 0; i < N; i++)
     {
         for(int j = 0; j < M; j++)
@@ -107,7 +96,6 @@ int main()
             cin >> lab[i][j];
         }
     }
-
     combination(0);
 
     cout << answer;
