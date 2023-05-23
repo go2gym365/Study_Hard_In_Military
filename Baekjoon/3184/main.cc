@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int R, C;
-vector<vector<char>> ground(251, vector<char>(251, 0));
+vector<vector<char>> ground(251, vector<char>(251, '0'));
 vector<vector<bool>> visited(251, vector<bool>(251, false));
 int dx[4] = {-1, 0, 1, 0};
 int dy[4] = {0, -1, 0, 1};
@@ -12,7 +12,7 @@ void BFS(int xx, int yy)
     queue<pair<int, int>> q;
 
     q.push({yy, xx});
-    visited[yy][xx] == true;
+    visited[yy][xx] = true;
 
     int wolf = 0;
     int sheep = 0;
@@ -21,11 +21,12 @@ void BFS(int xx, int yy)
     {
         int x = q.front().second;
         int y = q.front().first;
+
         q.pop();        
 
         if(ground[y][x] == 'v')
             ++wolf;
-        else
+        else if(ground[y][x] == 'o')
             ++sheep;
 
         for(int i = 0; i < 4; i++)
@@ -39,14 +40,14 @@ void BFS(int xx, int yy)
             if(visited[ny][nx])
                 continue;
             q.push({ny, nx});
-            visited[ny][nx] == true;
+            visited[ny][nx] = true;
         }
     }
 
-    if(wolf > sheep)
-        W++;
-    else   
-        S++;
+    if(wolf >= sheep)
+        W += wolf;
+    else
+        S += sheep;
 }
 
 int main()
@@ -59,10 +60,19 @@ int main()
         for(int j = 0; j < C; j++)
         {
             ground[i][j] = str[j];
+            
         }
     }
 
-    BFS(0, 0);
-
-    cout << W << " " << S;
+    for (int i = 0; i < R; i++)
+    {
+        for(int j = 0; j < C; j++)
+        {
+            if(ground[i][j] != '#' && !visited[i][j])
+            {
+                BFS(j, i);
+            }            
+        }
+    }
+    cout << S << " " << W;
 }
