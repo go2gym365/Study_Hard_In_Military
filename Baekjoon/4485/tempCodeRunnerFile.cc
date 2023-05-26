@@ -1,0 +1,2 @@
+
+        cout << "Problem " << idx << ": " << B
