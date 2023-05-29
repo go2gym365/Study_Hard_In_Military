@@ -13,6 +13,7 @@ int dy[4] = {0, -1, 0, 1};
 void dijkstra() {
     priority_queue<pair<int, pair<int, int>>> pq; //cost, y, x
     pq.push({0, {0, 0}});
+    dist[0][0] = 0;
     
     while(!pq.empty()) {
         int x, y, cnt;
