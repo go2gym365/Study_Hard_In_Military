@@ -8,17 +8,17 @@ vector<int> dist(801, INF);
 
 void dijkstra(int start) {
     priority_queue<pair<int, int>>pq;
+    dist[start] = 0;
     pq.push({0, start});
 
     while(!pq.empty()) {
-        int here = pq.top().first;
-        int cost = -pq.top().second;
+        int cost = -pq.top().first;
+        int here = pq.top().second;
         pq.pop();
 
-
         for(int i = 0; i < v[here].size(); i++) {
-            int there = v[here][i].first;
-            int ncost = v[here][i].second + cost;
+            int there = v[here][i].second;
+            int ncost = v[here][i].first + cost;
 
             if(dist[there] > ncost) {
                 dist[there] = ncost;
@@ -29,7 +29,7 @@ void dijkstra(int start) {
 }
 
 int main() {
-    int N, E, v1, v2, res;
+    int N, E, v1, v2, res = 0;
     cin >> N >> E;
     int stov1, stov2, v1tov2, v1toN, v2toN;
     while(E--) {
@@ -52,8 +52,10 @@ int main() {
     dijkstra(v2);
     v2toN = dist[N];
 
+    cout << stov1 << " " << stov2 << " " << v1tov2 << " " << v1toN << " " << v2toN;
     res = min(res, stov1 + v1tov2 + v2toN);
     res = min(res, stov2 + v1tov2 + v1toN);
+    
     if(v1tov2 == INF || res == INF) cout << -1;
     else cout << res;
 }
