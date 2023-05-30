@@ -7,6 +7,7 @@ vector<pair<int, int>> v[801];
 vector<int> dist(801, INF);
 
 void dijkstra(int start) {
+    //dist.assign(dist.begin(), dist.end());
     priority_queue<pair<int, int>>pq;
     dist[start] = 0;
     pq.push({0, start});
@@ -15,6 +16,8 @@ void dijkstra(int start) {
         int cost = -pq.top().first;
         int here = pq.top().second;
         pq.pop();
+        
+        if(dist[here] < cost) continue;
 
         for(int i = 0; i < v[here].size(); i++) {
             int there = v[here][i].second;
@@ -32,7 +35,7 @@ int main() {
     int N, E, v1, v2, res = 0;
     cin >> N >> E;
     int stov1, stov2, v1tov2, v1toN, v2toN;
-    while(E--) {
+    for(int i = 0; i < E; i++) {
         int a, b, c;
         cin >> a >> b >> c;
 
@@ -52,8 +55,7 @@ int main() {
     dijkstra(v2);
     v2toN = dist[N];
 
-    cout << stov1 << " " << stov2 << " " << v1tov2 << " " << v1toN << " " << v2toN;
-    res = min(res, stov1 + v1tov2 + v2toN);
+    res = min(INF, stov1 + v1tov2 + v2toN);
     res = min(res, stov2 + v1tov2 + v1toN);
     
     if(v1tov2 == INF || res == INF) cout << -1;
