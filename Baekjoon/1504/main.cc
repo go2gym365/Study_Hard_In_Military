@@ -55,7 +55,7 @@ int main() {
     dijkstra(v2);
     v2toN = dist[N];
 
-    res = min(INF, stov1 + v1tov2 + v2toN);
+    res = min(res, stov1 + v1tov2 + v2toN);
     res = min(res, stov2 + v1tov2 + v1toN);
     
     if(v1tov2 == INF || res == INF) cout << -1;
