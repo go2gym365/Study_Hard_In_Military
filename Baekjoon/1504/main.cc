@@ -32,7 +32,7 @@ void dijkstra(int start) {
 }
 
 int main() {
-    int N, E, v1, v2, res = 0;
+    int N, E, v1, v2, res = INF;
     cin >> N >> E;
     int stov1, stov2, v1tov2, v1toN, v2toN;
     for(int i = 0; i < E; i++) {
