@@ -1,3 +1,2 @@
 
-// if(v1tov2 == INF || res == INF) cout << -1;
-//     else 
+    res = min(res, stov1 + v1tov2 + v2toN);

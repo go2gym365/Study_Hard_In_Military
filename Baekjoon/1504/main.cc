@@ -1,13 +1,14 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+
 using namespace std;
 
-const int INF = 987654321;
+const int INF = numeric_limits<int>::max();
 
 vector<pair<int, int>> v[801];
 vector<int> dist(801, INF);
 
 void dijkstra(int start) {
-    //dist.assign(dist.begin(), dist.end());
+    dist.assign(801, INF);
     priority_queue<pair<int, int>>pq;
     dist[start] = 0;
     pq.push({0, start});
@@ -20,8 +21,8 @@ void dijkstra(int start) {
         if(dist[here] < cost) continue;
 
         for(int i = 0; i < v[here].size(); i++) {
-            int there = v[here][i].second;
-            int ncost = v[here][i].first + cost;
+            int there = v[here][i].first;
+            int ncost = v[here][i].second + cost;
 
             if(dist[there] > ncost) {
                 dist[there] = ncost;
@@ -32,9 +33,11 @@ void dijkstra(int start) {
 }
 
 int main() {
-    int N, E, v1, v2, res = INF;
-    cin >> N >> E;
+    int N, E, v1, v2;
     int stov1, stov2, v1tov2, v1toN, v2toN;
+    
+    cin >> N >> E;
+
     for(int i = 0; i < E; i++) {
         int a, b, c;
         cin >> a >> b >> c;
@@ -55,9 +58,10 @@ int main() {
     dijkstra(v2);
     v2toN = dist[N];
 
-    res = min(res, stov1 + v1tov2 + v2toN);
-    res = min(res, stov2 + v1tov2 + v1toN);
+    int res = min((long long)stov2 + v1tov2 + v1toN, (long long)stov1 + v1tov2 + v2toN);
     
-    if(v1tov2 == INF || res == INF) cout << -1;
+    if(res >= INF) cout << -1;
     else cout << res;
+
+    return 0;
 }
