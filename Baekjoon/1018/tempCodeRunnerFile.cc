@@ -26,7 +26,7 @@ string blackf[8] = {
 	"WBWBWBWB"
 };
 
-int checkBlack(int y, int x) {
+int check_black(int y, int x) {
 	int cnt = 0;
 	for(int i = 0; i < 8; i++) {
 		for(int j = 0; j < 8; j++) {
@@ -38,7 +38,7 @@ int checkBlack(int y, int x) {
 	return cnt;
 }
 
-int checkWhite(int y, int x) {
+int check_white(int y, int x) {
 	int cnt = 0;
 	for(int i = 0; i < 8; i++) {
 		for(int j = 0; j < 8; j++) {
@@ -52,19 +52,17 @@ int checkWhite(int y, int x) {
 int main() {
     int n, m;
 	int res = 987654321;
-    
-	cin >> n >> m;
+    cin >> n >> m;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++){
 		cin >> arr[i];
 	}
 
     for(int i = 0; i < n; i++) {
 		for(int j = 0; j < m; j++) {
-			if(i + 8 > n || j + 8 > m) continue;
 			int n = 0;
-			int w = checkWhite(i, j);
-			int b = checkBlack(i, j);
+			int w = check_white(i, j);
+			int b = check_black(i, j);
 			n = min(w, b);
 			res = min(res, n);
 		}
