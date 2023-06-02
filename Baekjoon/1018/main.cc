@@ -57,3 +57,5 @@ int main() {
     
     int t_white, t_black;
 }
+erwq
+ewqr
