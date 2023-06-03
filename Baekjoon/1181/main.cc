@@ -15,7 +15,8 @@ int main() {
     while(n--) {
         string str;
         cin >> str;
-        v.push_back(str);
+        if(find(v.begin(), v.end(), str) == v.end())
+            v.push_back(str);
     }
 
     sort(v.begin(), v.end(), compare);
