@@ -15,9 +15,29 @@ int main() {
         priority_queue<int> pq;
 
         for(int i = 0; i < n; i++) {
-            int idx, priority;
-            cin >> idx >> priority;
-            q.push({idx, priority})
+            int priority;
+            cin >> priority;
+            q.push({i, priority});
+            pq.push(priority);
+        }
+        
+        while(!q.empty()) {
+            int idx = q.front().first;
+            int priority = q.front().second;
+            q.pop();
+
+            if(priority == pq.top()) {
+                cnt ++;
+                pq.pop();
+                if(idx == m) {
+                    cout << cnt << "\n";
+                    break;
+                }
+            }
+            else {
+                q.push({idx, priority});
+            }
+
         }
     }
 }
