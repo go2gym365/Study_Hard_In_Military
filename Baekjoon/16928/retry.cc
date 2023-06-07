@@ -8,15 +8,15 @@ vector<bool> vis(102, false);
 void BFS(int x, int cnt) {
     queue<pair<int, int>> q;
     q.push({x, cnt});
-    
-    while(!q.empty()) {
+
+    while(!q.empty()){
         int location = q.front().first;
         int count = q.front().second;
         q.pop();
 
         for(int i = 1; i <= 6; i++) {
             int nx = location + i;
-            if(nx == 100) {
+            if(nx == 100){
                 cout << count + 1;
                 return;
             }
@@ -24,7 +24,7 @@ void BFS(int x, int cnt) {
                 while(v[nx] != 0) {
                     nx = v[nx];
                 }
-                if(!vis[nx]){
+                if(!vis[nx]) {
                     q.push({nx, count + 1});
                     vis[nx] = true;
                 }
@@ -36,7 +36,7 @@ void BFS(int x, int cnt) {
 int main() {
     int N, M;
     cin >> N >> M;
-    
+
     for(int i = 0; i < N; i++) {
         int a, b;
         cin >> a >> b;
@@ -45,10 +45,10 @@ int main() {
     }
 
     for(int i = 0; i < M; i++) {
-        int c, d;
-        cin >> c >> d;
+        int a, b;
+        cin >> a >> b;
 
-        v[c] = d;
+        v[a] = b;
     }
 
     BFS(1, 0);
