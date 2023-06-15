@@ -9,6 +9,7 @@ void DFS(int start) {
     vis[start] = true;
     for(int node : vec[start]) {
         if(!vis[node]){
+            cout << node << "\n";
             DFS(node);
         }
     }
@@ -31,6 +32,7 @@ int main() {
         if(!vis[i]) {
             ++cnt;
             DFS(i);
+            cout << "\n";
         }        
     }
     cout << cnt;
