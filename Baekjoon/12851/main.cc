@@ -2,38 +2,38 @@
 
 using namespace std;
 
-vector<int> vis(200002, false);
+vector<bool> vis(200002, false);
 
-int n , k;
+int n, k, t = 0;
+int cnt = 0;
 
-void BFS(int start) {
+void BFS() {
     queue<pair<int, int>> q;
-    vis[start] = true;
-    q.push({start, 0});
+    vis[n] = true;
+    q.push({n, 0});
     
     while(!q.empty()) {
-        int nowNode = q.front().first;
+        int curLoc = q.front().first;
         int time = q.front().second;
-
+        
         q.pop();
+        vis[curLoc] = true;
 
-        if(nowNode < 0 || nowNode > 100000) continue;
-        if(nowNode == k) {
-            cout << time;
-            break;
-        }
+        if(cnt && curLoc == k && t == time) cnt++;
 
-        if(!vis[nowNode * 2]) {
-            vis[nowNode * 2] = true;
-            q.push({nowNode * 2, time + 1});
+        if(!cnt && curLoc == k) {
+            t = time;
+            cnt++;
         }
-        if(!vis[nowNode + 1]) {
-            vis[nowNode + 1] = true;
-            q.push({nowNode + 1, time + 1});
+        
+        if(curLoc * 2 <= 100000 && !vis[curLoc * 2]) {
+            q.push({curLoc * 2, time + 1});
         }
-        if(!vis[nowNode - 1]) {
-            vis[nowNode - 1] = true;
-            q.push({nowNode - 1, time + 1});
+        if(curLoc + 1 <= 100000 && !vis[curLoc + 1]) {
+            q.push({curLoc + 1, time + 1});
+        }
+        if(curLoc- 1 >= 0 && !vis[curLoc - 1]) {
+            q.push({curLoc - 1, time + 1});
         }
     }
 }
@@ -45,5 +45,7 @@ int main() {
 
     cin >> n >> k;
 
-    BFS(n);
+    BFS();
+
+    cout << t << "\n" << cnt;
 }
