@@ -17,3 +17,6 @@ https://code.plus/course/43
 https://sanghyu.tistory.com/62
 
 https://gusdnr69.tistory.com/116
+
+https://gyoogle.dev/blog/computer-science/computer-architecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EC%9D%98%20%EA%B5%AC%EC%84%B1.html
+https://github.com/gyoogle/tech-interview-for-developer
