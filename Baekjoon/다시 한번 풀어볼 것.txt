@@ -20,7 +20,7 @@ https://gusdnr69.tistory.com/116
 
 https://gyoogle.dev/blog/computer-science/computer-architecture/%EC%BB%B4%ED%93%A8%ED%84%B0%EC%9D%98%20%EA%B5%AC%EC%84%B1.html
 https://github.com/gyoogle/tech-interview-for-developer
-
+https://blog.encrypted.gg/category/%EA%B0%95%EC%A2%8C/%EC%8B%A4%EC%A0%84%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98
 
 다 못푼문제
 1149 
