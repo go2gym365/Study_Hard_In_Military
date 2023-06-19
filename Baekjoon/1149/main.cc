@@ -2,35 +2,52 @@
 
 using namespace std;
 
-vector<int> v;
-vector<int> ans;
+int n;
+
+vector<int> color[1001];
+
+int dp[1001][3];
+
+int solve(int num, int col) {
+    if(num == n) return 0;
+    int &sum = dp[num][col];
+    if(sum != -1) return sum;
+    sum = 0;
+
+    if(col == 0) {
+        sum += solve(num + 1, 1);
+        sum += solve(num + 1, 2);
+        sum += solve(num + 1, 3);
+    }
+    if(col == 1) {
+        sum += solve(num + 1, 2);
+        sum += solve(num + 1, 3);
+    }
+    if(col == 2) {
+        sum += solve(num + 1, 1);
+        sum += solve(num + 1, 2);
+        sum += solve(num + 1, 3);
+    }
+    if(col == 3) {
+        sum += solve(num + 1, 1);
+        sum += solve(num + 1, 2);
+        sum += solve(num + 1, 3);
+    }
+}
 
 int main() {
+    memset(dp, -1, sizeof(dp));
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
     
-    int n, m;
-
-    cin >> n;
     for(int i = 0; i < n; i++) {
-        int num;
-        cin >> num;
-        v.push_back(num);
+        int r, g, b;
+        cin >> r >> g >> b;
+        color[i].push_back(r);
+        color[i].push_back(g);
+        color[i].push_back(b);
     }
 
-    cin >> m;
-    for(int i = 0; i < m; i++) {
-        int num;
-        cin >> num;
-
-        if(find(v.begin(), v.end(), num) == v.end()) {
-            ans.push_back(0);
-        }
-        else ans.push_back(1);
-    }
-
-    for(int i = 0; i < n; i++) {
-        cout << ans[i] << "\n";
-    }
+    solve(1, 0);
 }
