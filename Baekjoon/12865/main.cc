@@ -3,18 +3,22 @@
 using namespace std;
 
 vector<pair<int, int>> goods;
-int dp[100001];
-
-const int INF = -987654321;
+int dp[101][100001];
 int n, k;
 
-int solve(int weight) {
-    if(weight == k) return goods[weight].second;
-    int &ref = dp[weight];
-    if(ref != -1) return ref;
-    ref = INF;
+int solve(int weight, int cnt) {
+    if(cnt == n) return 0;
+    int &ret = dp[cnt][weight];
+    if(ret != -1) return ret;
+    ret = 0;
+    //ret 가치 최댓값 / 무게 합 / 몇번 상품
 
-    
+    if(goods[cnt].first + weight <= k) {
+        ret = max(ret, solve(weight + goods[cnt].first, cnt + 1) + goods[cnt].second);
+    }
+    ret = max(ret, solve(weight, cnt + 1));
+
+    return ret;
 }
 
 int main() {
@@ -28,5 +32,5 @@ int main() {
         goods.push_back({w, v});
     }
 
-    solve(0);
+    cout << solve(0, 0);
 }
