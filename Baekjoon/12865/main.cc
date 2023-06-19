@@ -2,28 +2,31 @@
 
 using namespace std;
 
-struct cmp{
-    bool operator() (pair<int, int> a, pair<int, int> b){
-        if(a.first == b.first) return a.second > b.second;
-        return a.first < b.first;
-    }
-};
+vector<pair<int, int>> goods;
+int dp[100001];
 
-priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> pq;
+const int INF = -987654321;
+int n, k;
+
+int solve(int weight) {
+    if(weight == k) return goods[weight].second;
+    int &ref = dp[weight];
+    if(ref != -1) return ref;
+    ref = INF;
+
+    
+}
 
 int main() {
-    int n, k;
-    int sum = 0;
+    memset(dp, -1, sizeof(dp));
+    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
     cin >> n >> k;
-    
+
     for(int i = 0; i < n; i++) {
         int w, v;
         cin >> w >> v;
-
-        pq.push({w, v});
+        goods.push_back({w, v});
     }
 
-    for(int i = 0; i < n; i++) {
-        if()
-    }
+    solve(0);
 }

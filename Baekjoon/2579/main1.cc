@@ -12,7 +12,7 @@ int solve(const int n, const int cnt) {
     if(cnt > N) return -987654321;
     int &ret = dp[n][cnt];
     if(ret != -1) {
-        //cout << n << "과" << cnt << "이미 계산되어 리턴함\n";
+        cout << n << "과" << cnt << "이미 계산되어 리턴함\n";
         return ret;
     }
     ret = 0;
@@ -22,7 +22,7 @@ int solve(const int n, const int cnt) {
     if(n == 0) {
         ret = max(ret, solve(1, cnt + 2) + stairs[cnt]);
     }
-    // 두칸을 올라가고 n을 초기화하거나
+    // 두칸을 올라가고 n을 초기화하거나1
     // 한칸을 올라가고 다음에 두칸을 뛰어넘던가
     else if(n == 1) {
         ret = max(ret, solve(0, cnt + 1) + stairs[cnt]);
