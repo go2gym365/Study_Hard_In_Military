@@ -7,7 +7,7 @@ int dp[3][301];
 int N;
 int sum = 0;
 
-int solve(int n, int cnt) {
+int solve(const int n, const int cnt) {
     if(cnt == N) return stairs[cnt];
     if(cnt > N) return -987654321;
     int &ret = dp[n][cnt];
@@ -16,7 +16,7 @@ int solve(int n, int cnt) {
         return ret;
     }
     ret = 0;
-    //cout << n << "과" << cnt << "가 처음 계산됨\n";
+    cout << n << "과" << cnt << "가 처음 계산됨\n";
     // 앞으로 밟을 계단의 수가 0일때
     // 무조건 두 칸 올라가야 됨
     if(n == 0) {
