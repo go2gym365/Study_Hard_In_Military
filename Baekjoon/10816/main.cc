@@ -5,28 +5,24 @@ using namespace std;
 int n, m;
 int arr[500001];
 
-int lowBinarySearch(int num) {
+int LowerBound(int key) {
     int start = 0;
     int end = n;
-
+    int mid;
+    
     while(start < end) {
-        int mid = (start + end) / 2;
+        mid = (start + end) / 2;
 
-        if(num <= arr[mid]) {
-            
-        }
+        if(arr[mid] < key) //key값이 중앙 값보다 크면
+            start = mid + 1;//현재 mid보다 오른쪽으로
+        else 
+            end = mid; //현재 mid 포함 왼쪽
     }
 }
 
-int highBinarySearch(int num) {
-    int start = 0;
-    int end = n;
-    int mid = (start + end) / 2;
-
-    while()
-}
-
 int main() {
+    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    
     cin >> n;
     for(int i = 0; i < n; i++) {
         int a;
@@ -40,6 +36,6 @@ int main() {
     for(int i = 0; i < m; i++) {
         int b;
         cin >> b;
-        cout << highBinarySearch(b) - lowBinarySearch(b);
+        cout << upper_bound(arr, arr + n, b) - lower_bound(arr, arr + n, b) << " ";
     }
 }
