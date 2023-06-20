@@ -26,6 +26,8 @@ https://blog.encrypted.gg/category/%EA%B0%95%EC%A2%8C/%EC%8B%A4%EC%A0%84%20%EC%9
 CS관련 지식 공부
 https://garden1500.tistory.com/5
 
+알고리즘 공부 블로그
+https://ansohxxn.github.io/stl/bound/
 
 다 못푼문제
 1149 
