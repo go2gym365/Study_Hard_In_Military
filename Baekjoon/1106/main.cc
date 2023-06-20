@@ -18,7 +18,7 @@ int solve(int visiter, int num)
     ret = 987654321;
 
     int mul = 0;
-    while(visiter + ads[num].second * mul < c) {
+    while(visiter + ads[num].second * mul <= c) {
         ret = min(ret, solve(ads[num].second * mul + visiter, num+1) + ads[num].first * mul);
         ++mul;
     }
