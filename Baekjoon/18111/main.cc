@@ -33,7 +33,7 @@ void dig() {
     ans.push_back({sec, v[0][0]});
 }
 
-int struc() {
+void struc() {
     int sec = 0;
     int mx = -987654321;
 
