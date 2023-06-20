@@ -6,9 +6,9 @@ int n, m;
 
 int num[100001];
 
-void binarySearch(int target, int arr[]) {
+void binarySearch(int target) {
     int low = 0;
-    int high = n;
+    int high = n - 1;
     int mid;
 
     while(low <= high) {
@@ -21,9 +21,8 @@ void binarySearch(int target, int arr[]) {
         else if(num[mid] < target) {
             low = mid + 1;
         }
-        else if(num[mid] > target) {
+        else
             high = mid - 1;
-        }
     }
     cout << '0' << "\n";
     return;
@@ -45,6 +44,6 @@ int main() {
     for(int i = 0; i < m; i++) {
         int b;
         cin >> b;
-        binarySearch(b, num);
+        binarySearch(b);
     }
 }
