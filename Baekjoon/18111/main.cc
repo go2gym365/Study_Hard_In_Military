@@ -4,7 +4,7 @@ using namespace std;
 
 int n, m, b;
 
-vector<int> v(501, vector<int>(501, 0));
+vector<vector<int>> v(501, vector<int>(501, 0));
 vector<pair<int, int>> ans;
 
 bool cmp(pair<int, int> a, pair<int, int> b) {
@@ -14,7 +14,7 @@ bool cmp(pair<int, int> a, pair<int, int> b) {
 
 void dig() {
     int sec = 0;
-    int frist = 987654321;
+    int first = 987654321;
 
     for(int i= 0; i < n; i++) {
         for(int j = 0; j < m; j++){
