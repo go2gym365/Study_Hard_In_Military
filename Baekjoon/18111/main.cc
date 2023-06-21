@@ -45,12 +45,21 @@ void struc() {
 
     for(int i= 0; i < n; i++) {
         for(int j = 0; j < m; j++){
-            if(v[i][j] != mx && b > 0) {
+            if(v[i][j] != mx && b >= mx - v[i][j]) {
+                if()
                 sec += mx - v[i][j];
                 b -= mx - v[i][j];
                 v[j][i] = mx;
             }
-            else break;
+            else {
+                for(int i= 0; i < n; i++) {
+                    for(int j = 0; j < m; j++){
+                        mx = max(mx, v[i][j]);
+                    }
+                }
+                ans.push_back({sec, mx});    
+                return;
+            }
         }
     }
 
@@ -74,7 +83,8 @@ int main() {
         }
     }
 
+    dig();
+    struc();
     sort(ans.begin(), ans.end(), cmp);
-    
     cout << ans.front().first << " " << ans.front().second;
 }
