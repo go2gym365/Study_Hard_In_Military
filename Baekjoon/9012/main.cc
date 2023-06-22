@@ -1,4 +1,4 @@
-#include<bit/stdc++.h>
+#include<bits/stdc++.h>
 
 using namespace std;
 
@@ -10,17 +10,15 @@ int main() {
         stack<int> s;
 
         string str;
-        bool check;
 
         cin >> str;
 
         for(int i = 0; i < str.size(); i++) {
-            if(str[i] == '(') {
-                s.push(str[i]);
-            }
-            else if(str[i] == ')') {
-                
-            }
+            if(str[i] == '(' || s.empty()) s.push(str[i]);
+            else if(s.top() == '(') s.pop();
         }
+
+        if(s.empty()) cout << "YES" << "\n";
+        else cout << "NO" << "\n";
     }
 }
