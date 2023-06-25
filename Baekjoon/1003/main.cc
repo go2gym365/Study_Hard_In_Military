@@ -28,4 +28,4 @@ int main() {
         if(temp == 0) cout << '1' << " " << '0';
         else cout << Fibo(temp - 1) << " " << Fibo(temp) << "\n";
     }
-}
+}  
