@@ -4,6 +4,8 @@ using namespace std;
 
 int dp[15];
 
+solve(int )
+
 int main() {
     int t;
     cin >> t;
@@ -12,6 +14,6 @@ int main() {
         int k, n;
         cin >> k >> n;
 
-        
+        solve(k, n);
     }
 }
