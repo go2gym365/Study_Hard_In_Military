@@ -4,7 +4,9 @@ using namespace std;
 
 int dp[15];
 
-solve(int )
+solve(int ) {
+    if()
+}
 
 int main() {
     int t;
