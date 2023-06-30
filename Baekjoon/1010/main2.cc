@@ -11,7 +11,7 @@ int combination(int n, int r) {
     int &ret = dp[n][r];
     if(ret != -1) return ret;
     
-    ret = combination(n - 1, r - 1) + combination(n - 1, r);
+    ret = combination(n - 1, r - 1) + combinati on(n - 1, r);
     
     return ret;
 }
