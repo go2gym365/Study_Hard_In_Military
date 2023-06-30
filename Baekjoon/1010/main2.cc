@@ -5,13 +5,11 @@ using namespace std;
 int dp[30][30];
 
 int combination(int n, int r) {
-    if(n == r || n == 0) {
-        return 1;
-    }
+    if(n == r || n == 0) return 1;
     int &ret = dp[n][r];
     if(ret != -1) return ret;
     
-    ret = combination(n - 1, r - 1) + combinati on(n - 1, r);
+    ret = combination(n - 1, r - 1) + combination(n - 1, r);
     
     return ret;
 }
