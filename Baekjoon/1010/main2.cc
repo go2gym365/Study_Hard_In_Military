@@ -5,7 +5,7 @@ using namespace std;
 int dp[30][30];
 
 int combination(int n, int r) {
-    if(n == r || n == 0) return 1;
+    if(n == r || r == 0) return 1;
     int &ret = dp[n][r];
     if(ret != -1) return ret;
     
@@ -25,6 +25,6 @@ int main() {
         int n, m;
         cin >> n >> m;
 
-        cout << combination(n, m) << "\n";
+        cout << combination(m, n) << "\n";
     }
 }

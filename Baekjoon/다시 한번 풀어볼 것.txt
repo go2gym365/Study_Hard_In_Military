@@ -29,13 +29,11 @@ https://garden1500.tistory.com/5
 알고리즘 공부 블로그
 https://ansohxxn.github.io/stl/bound/
 
-다 못푼문제
-1149 
-1106
+다 못푼문제 
 18111
 2217
 2275
-1010
+
 
 재귀
 1003
