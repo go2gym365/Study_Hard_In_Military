@@ -4,8 +4,11 @@ using namespace std;
 
 vector<int> v;
 
-bool numCheck(int num) {
+int n, m;
+int ans = 987654321;
+int value;
 
+bool numCheck(int num) {
     string str = to_string(num);
     
     for(int i = 0; i < str.size(); i++) {
@@ -16,46 +19,59 @@ bool numCheck(int num) {
     return true;
 }
 
-int main() {
-    int n, m;
-
-    cin >> n >> m;
-
-    if(n == 100) {
-        cout << 0;
-        return 0;
-    }
-
-    if(m == 0) {
-        int cnt = 0;
-
-        while(n > 0) {
-            n /= 10;
-            cnt++;
+void selNum(int culNum, int cnt) {
+    if(culNum > 1000001) return;
+    if(culNum == m) {
+        if (ans > cnt) {
+            ans = cnt;
+            value = culNum;
         }
-        cout << cnt;
-        return 0;
+        return;
     }
     else {
-        for(int i = 0; i < m; i++) {
+        int temp = cnt + abs(m - culNum);
+        if(ans > temp) {
+            ans = temp;
+            value = culNum;
+        }
+    }
+
+    for(int i  = 0; i < 10; i++) {
+        if(culNum == 0 && i == 0) continue; 
+        if(find(v.begin(), v.end(), i) != v.end()) continue;
+        selNum(culNum * 10 + i, cnt + 1);
+    }
+}
+
+int main() {
+    cin >> n >> m;
+
+    if(m != 0) {
+        for(int i = 0; i < m; i++){
             int a;
             cin >> a;
             v.push_back(a);
         }
-        
-        if(numCheck(n)) {
-            int cnt = 0;
+    }
 
-            while(n > 0) {
-                n /= 10;
-                cnt++;
-            }
-            cout << cnt;
-            return 0;
+    if(m == 0 || numCheck(n)) {
+        int cnt = 0;
+        int temp = n;
+        while(temp > 0) {
+            temp /= 10;
+            cnt++;
         }
-        else {
-
+        if(ans > cnt) {
+            ans = cnt;
+            value = n; 
         }
     }
 
+    if(!numCheck(n)) {
+        selNum(0, 0);
+    }
+
+    ans = min(ans, abs(m - 100));
+
+    cout << ans << " " << value;
 }
