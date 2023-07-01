@@ -54,8 +54,7 @@ int main() {
         for(int j = 0; j < m; j++) {
             if(v[i][j] == 'I') {
                 vis[i][j] = true;
-                BFS(i, j);
-                
+                BFS(i, j);                
                 break;                
             } 
         }
