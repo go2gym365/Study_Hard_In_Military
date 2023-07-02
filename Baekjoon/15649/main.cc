@@ -3,11 +3,11 @@
 using namespace std;
 
 int n, m;
-int arr[10];
-bool vis[10];
+int arr[10] = {0, };
+bool vis[10] = {false, };
 
 void func(int cnt) {
-    if(cnt = m) {
+    if(cnt == m) {
         for(int i = 0; i < m; i++) {
             cout << arr[i] << ' ';
         }
@@ -15,12 +15,12 @@ void func(int cnt) {
         return;
     }
 
-    for(int i  = 0; i < n; i++){
+    for(int i = 1; i <= n; i++){
         if(!vis[i]) {
+            vis[i] = true;
             arr[cnt] = i;
-            vis[i] = 1;
             func(cnt + 1);
-            vis[1] = 0;
+            vis[i] = false;
         }
     }
 }
