@@ -13,6 +13,7 @@ void DFS(int num, int cnt) {
             cout << v[i] << " ";
         }
         cout << "\n";
+        return;
     }
     for(int i = num; i <= n; i++) {
         if(!vis[i]) {
@@ -21,8 +22,7 @@ void DFS(int num, int cnt) {
             DFS(i + 1, cnt + 1);
             vis[i] = false;
         }
-    }
-    
+    }    
 }
 
 int main() {
