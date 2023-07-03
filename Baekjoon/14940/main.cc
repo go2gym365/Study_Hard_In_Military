@@ -25,8 +25,9 @@ void BFS(int yy, int xx) {
             int nx = x + dx[i];
             int ny = y + dy[i];
             if(nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
-            if(v[ny][nx] = 0) continue;
+            if(v[ny][nx] == 0) continue;
             if(vis[ny][nx] != 0) continue;
+            if(ny == 0 && nx == 0) continue;
             q.push({ny, nx});
             vis[ny][nx] += vis[y][x] + 1;
         }
