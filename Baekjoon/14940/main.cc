@@ -52,13 +52,6 @@ int main() {
     }
 
     BFS(a, b);
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cout << v[i][j] << " ";
-        }
-        cout << "\n";
-    }
     
     for(int i=0; i<n; i++) {
         for(int j=0; j<m; j++) {
