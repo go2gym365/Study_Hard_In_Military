@@ -13,8 +13,7 @@ int main() {
         long long ans = 1;
 
         int r = 1;
-        for(int i = 0; i > m - n; i--)
-         {
+        for(int i = 0; i > m - n; i--) {
             ans *= i;
             ans /= r++;
         }
