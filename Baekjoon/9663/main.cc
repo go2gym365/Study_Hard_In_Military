@@ -8,7 +8,8 @@ int n;
 int ans = 0;
 
 void queen(int x) {
-    if(n == x) ans++;
+    if(n == x) 
+        ans++;
     else {
         for(int i = 0; i < n; i++) {
             vec[x] = i; //퀸의 위치를 정함
@@ -29,7 +30,7 @@ void queen(int x) {
 int main() {
     cin >> n;
 
-    queen();
+    queen(0);
     cout << ans;
 }
 
