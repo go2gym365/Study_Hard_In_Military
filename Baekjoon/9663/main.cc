@@ -7,6 +7,8 @@ vector<vector<bool>> vec(16, vector<bool>(16, 0));
 
 int n;
 
+
+
 int main() {
     cin >> n;
 
