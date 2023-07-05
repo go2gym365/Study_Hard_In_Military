@@ -32,3 +32,5 @@ int main() {
     queen();
     cout << ans;
 }
+
+//https://hagisilecoding.tistory.com/46
