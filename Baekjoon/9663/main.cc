@@ -8,14 +8,15 @@ int n;
 int ans = 0;
 
 void queen(int x) {
-    if(n == x) 
+    if(n == x) {
         ans++;
+    }        
     else {
         for(int i = 0; i < n; i++) {
             vec[x] = i; //퀸의 위치를 정함
             bool check = true;
             for(int j = 0; j < x; j++) {
-                if(vec[x] == vec[j] || abs(vec[x] - vec[j] == x - j)) {
+                if(vec[x] == vec[j] || abs(vec[x] - vec[j]) == x - j) {
                     check = false;
                     break;
                 }
