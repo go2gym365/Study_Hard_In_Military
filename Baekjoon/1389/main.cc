@@ -6,7 +6,9 @@ vector<int> vec[101];
 
 int n, m;
 
-void BFS()
+void BFS(int start) {
+
+}
 
 int main() {
     cin >> n >> m;
