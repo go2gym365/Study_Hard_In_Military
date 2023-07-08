@@ -15,6 +15,7 @@ void BFS(int yy, int xx) {
     int cnt = 0;
     queue<pair<int, int>> q;
     q.push({yy, xx});
+    vis[yy][xx] = true;
     
     while(!q.empty()) {
         int x = q.front().second;
@@ -30,8 +31,7 @@ void BFS(int yy, int xx) {
             if(vec[ny][nx] == '0') continue;
             if(vis[ny][nx] == true) continue;
             vis[ny][nx] = true;
-            q.push({ny, nx});
-            
+            q.push({ny, nx});            
         }
     }
     ans.push_back(cnt);
@@ -46,7 +46,6 @@ int main() {
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < n; j++) {
             if(vec[i][j] == '1' && !vis[i][j]) {
-                vis[i][j] = true;
                 BFS(i, j);
             }
         }
