@@ -29,6 +29,9 @@ https://garden1500.tistory.com/5
 알고리즘 공부 블로그
 https://ansohxxn.github.io/stl/bound/
 
+디자인 패턴
+https://refactoring.guru/
+
 다 못푼문제 
 1107
 1389
