@@ -19,11 +19,14 @@ int main() {
             while(1) {
                 cout << str[i];
                 i += 1;
-                if(str[i] == '>') break;
+                if(str[i] == '>') {
+                    cout << str[i];
+                    i += 1;
+                    break;
+                }
             }
         }
 
-        sta.push(str[i]);
 
         if(str[i] == ' ') {
             while(!sta.empty()) {
@@ -31,6 +34,11 @@ int main() {
                 sta.pop();
             }
         }
+        
+        if(str[i] == ' ')
+            cout << ' ';
+        else
+            sta.push(str[i]);
     }
     while(!sta.empty()) {
         cout << sta.top();
