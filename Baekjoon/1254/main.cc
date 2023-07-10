@@ -14,17 +14,19 @@ bool cannotPali() {
 }
 
 int main() {
-    string str;
+    string str, ans;
     cin >> str;
 
-    string ans = "";
 
     for(int i = 0; i < str.size(); i++) {
         alpha[str[i] - 'a']++;
     }
     
     if(cannotPali()) {
-
+        for(int i = 0; i < 26; i++) {
+            if(alpha[i] % 2 == 1)
+                alpha[i]++;
+        }
     }
 
     for(int i = 0; i < 26; i++) {
@@ -44,4 +46,6 @@ int main() {
             ans += alpha[i] + 'a';
         }
     }
+
+    cout << ans.length() << " " << ans;
 }
