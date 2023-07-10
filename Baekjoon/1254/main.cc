@@ -4,9 +4,7 @@ using namespace std;
 
 int alpha[26];
 
-
-//알파벳의 갯수가 홀수인 알파벳이 2개 이상이면 펠린드롬 못만듬
-bool cannotPalin() {
+bool cannotPali() {
     int cnt = 0;
     for(int i = 0; i < 26; i++) {
         if(alpha[i] % 2 == 1)
@@ -16,34 +14,34 @@ bool cannotPalin() {
 }
 
 int main() {
-    string str, ans;
+    string str;
     cin >> str;
 
-    for(int i = 0; i < str.size(); i++) {
-        alpha[str[i] - 'A']++;
-    }
+    string ans = "";
 
-    if(cannotPalin()) {
-        cout << "I'm Sorry Hansoo";
-        return 0;
+    for(int i = 0; i < str.size(); i++) {
+        alpha[str[i] - 'a']++;
+    }
+    
+    if(cannotPali()) {
+
     }
 
     for(int i = 0; i < 26; i++) {
         for(int j = 0; j < alpha[i] / 2; j++) {
-            ans += alpha[i] + 'A';
+            ans += alpha[i] + 'a';
         }
     }
 
     for(int i = 0; i < 26; i++) {
-        if(alpha[i] % 2) {
-            ans += alpha[i] + 'A';
+        if(alpha[i] % 2 == 1) {
+            ans += alpha[i] + 'a';
         }
     }
+
     for(int i = 25; i >= 0; i--) {
         for(int j = 0; j < alpha[i] / 2; j++) {
-            ans += alpha[i] + 'A';
+            ans += alpha[i] + 'a';
         }
     }
-
-    cout << ans;
 }
