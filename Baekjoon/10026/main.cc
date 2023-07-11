@@ -45,9 +45,10 @@ int main() {
 
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < n; j++) {
-            if(vis[i][j]) continue;
-            BFS(i, j);
-            cntRGB++;
+            if(!vis[i][j]) {
+                BFS(i, j);
+                cntRGB++;
+            }
         }
     }
 
