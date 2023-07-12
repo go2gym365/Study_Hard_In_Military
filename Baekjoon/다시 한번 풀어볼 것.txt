@@ -35,7 +35,6 @@ https://refactoring.guru/
 다 못푼문제 
 1107
 1389
-1254
 
 재귀
 1003
