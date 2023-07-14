@@ -4,13 +4,12 @@ using namespace std;
 
 int n, m;
 
-int vertex[1001];
-int node[1001];
+int vertex[201];
+vector<int> path;
 
 int find(int x) {
     if(vertex[x] == x)
         return x;
-    
     return vertex[x] = find(vertex[x]);
 }
 
@@ -21,24 +20,15 @@ void merge(int x, int y) {
     else vertex[x] = y;
 }
 
-bool isUnion(int x, int y) {
-    x = find(x);
-    y = find(y);
-    if(x == y) 
-        return true;
-    else 
-        return false;
-}
-
 int main() {
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
     bool check = true;
     
-    for(int i = 1; i <= n; i++) {
-        vertex[i] = i;
-    }
-
     cin >> n >> m;
+
+    for(int i = 1; i <= n; i++)
+        vertex[i] = i;
+
 
     for(int i = 1; i <= n; i++) {
         for(int j = 1; j <= n; j++) {
@@ -49,16 +39,19 @@ int main() {
         }
     }
 
-    cin >> node[0];
+    for(int i = 0; i < m; i++) {
+        int a;
+        cin >> a;
+        path.push_back(a);
+    }
 
     for(int i = 1; i < m; i++) {
-        cin >> node[i];
-        if(!isUnion(node[i - 1], node[i])){
+        if(find(path[i] != find(path[i + 1]))) {
             check = false;
             break;
         }
     }
-
+    
     if(check) cout << "YES";
     else cout << "NO";
 }
