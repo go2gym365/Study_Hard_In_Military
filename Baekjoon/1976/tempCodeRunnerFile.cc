@@ -5,7 +5,6 @@ using namespace std;
 int n, m;
 
 int vertex[1001];
-int node[1001];
 
 int find(int x) {
     if(vertex[x] == x)
@@ -17,8 +16,8 @@ int find(int x) {
 void merge(int x, int y) {
     x = find(x);
     y = find(y);
-    if(x < y) vertex[y] = x;
-    else vertex[x] = y;
+    if(x == y) return;
+    else vertex[y] = x;
 }
 
 bool isUnion(int x, int y) {
@@ -34,13 +33,13 @@ int main() {
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
     bool check = true;
     
-    for(int i = 1; i <= n; i++) {
+    for(int i = 1; i <= m; i++) {
         vertex[i] = i;
     }
 
     cin >> n >> m;
 
-    for(int i = 1; i <= n; i++) {
+    for(int i = 1; i <= m; i++) {
         for(int j = 1; j <= n; j++) {
             int a;
             cin >> a;
@@ -49,14 +48,19 @@ int main() {
         }
     }
 
-    cin >> node[0];
+    vector<int> des;
+    for(int i = 0; i < n; i++) {
+        int a;
+        cin >> a;
 
-    for(int i = 1; i < m; i++) {
-        cin >> node[i];
-        if(!isUnion(node[i - 1], node[i])){
-            check = false;
+        des.push_back(a);
+    }
+
+
+    for(int i = 1; i < n; i++) {
+        check = isUnion(des[i - 1], des[i]);
+        if(!check)
             break;
-        }
     }
 
     if(check) cout << "YES";
