@@ -34,22 +34,20 @@ int main() {
         for(int j = 1; j <= n; j++) {
             int a;
             cin >> a;
-            if(a)
+            if(a == 1)
                 merge(i, j);
         }
     }
 
-    for(int i = 0; i < m; i++) {
-        int a;
-        cin >> a;
-        path.push_back(a);
-    }
-
+    int past, here;
+    cin >> past;
     for(int i = 1; i < m; i++) {
-        if(find(path[i] != find(path[i + 1]))) {
+        cin >> here;
+        if(find(past) != find(here)) {
             check = false;
             break;
         }
+        past = here;
     }
     
     if(check) cout << "YES";
