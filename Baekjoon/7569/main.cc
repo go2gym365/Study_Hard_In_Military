@@ -30,27 +30,31 @@ void BFS() {
                 int ny = y + dy[i];
 
                 if(nx < 0 || nx >= m || ny < 0 || ny >= n || nz < 0 || nz >= h) continue;
-                if(vis[nz][ny][nx] == true) continue;
+                if(vis[nz][ny][nx]) continue;
                 if(tomato[nz][ny][nx] == -1) continue;
 
                 future.push({nz, {ny, nx}});
                 vis[nz][ny][nx] = true;
             }
-        }
 
-        if(future.empty()) {
-            for(int k = 0; k < h; k++) {
-                for(int i = 0; i < n; i++) {
-                    for(int j = 0; j < m; j++) {
-                        if(tomato[k][i][j] == 1) {
+            if(future.empty()) {
+                for(int k = 0; k < h; k++) {
+                    for(int i = 0; i < n; i++) {
+                        for(int j = 0; j < m; j++) {
+                            if(tomato[k][i][j] == 0 && !vis[k][i][j]) {
+                                cout << -1;
+                                return;
+                            }
                         }
                     }
                 }
             }
+            q = future;
+            cnt++;
         }
-        q = future;
-        cnt++;
     }
+    cout << cnt;
+    return;
 }
 
 int main() {
