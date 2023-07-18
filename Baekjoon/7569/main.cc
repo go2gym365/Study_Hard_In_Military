@@ -15,12 +15,11 @@ bool vis[101][101][101] = {false, };
 queue<pair<int, pair<int, int>>> q;
 
 void BFS() {
-    while(1) {
         queue<pair<int, pair<int, int>>> future;
         while(!q.empty()) {
             int z = q.front().first;
-            int x = q.front().second.second;
             int y = q.front().second.first;
+            int x = q.front().second.second;
             
             q.pop();
 
@@ -29,7 +28,7 @@ void BFS() {
                 int nx = x + dx[i];
                 int ny = y + dy[i];
 
-                if(nx < 0 || nx >= m || ny < 0 || ny >= n || nz < 0 || nz >= h) continue;
+                if(nx < 0 || nx >= n || ny < 0 || ny >= m || nz < 0 || nz >= h) continue;
                 if(vis[nz][ny][nx]) continue;
                 if(tomato[nz][ny][nx] == -1) continue;
 
@@ -39,8 +38,8 @@ void BFS() {
 
             if(future.empty()) {
                 for(int k = 0; k < h; k++) {
-                    for(int i = 0; i < n; i++) {
-                        for(int j = 0; j < m; j++) {
+                    for(int i = 0; i < m; i++) {
+                        for(int j = 0; j < n; j++) {
                             if(tomato[k][i][j] == 0 && !vis[k][i][j]) {
                                 cout << -1;
                                 return;
@@ -52,8 +51,7 @@ void BFS() {
             q = future;
             cnt++;
         }
-    }
-    cout << cnt;
+    cout << cnt - 1;
     return;
 }
 
@@ -61,16 +59,16 @@ int main() {
     cin >> n >> m >> h;
 
     for(int k = 0; k < h; k++) {
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
                 cin >> tomato[k][i][j];
             }
         }
     }
 
     for(int k = 0; k < h; k++) {
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
                 if(tomato[k][i][j] == 1) {
                     q.push({k, {i, j}});
                     vis[k][i][j] = true;
