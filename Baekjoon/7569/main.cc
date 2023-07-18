@@ -16,29 +16,28 @@ queue<pair<int, pair<int, int>>> q;
 
 void BFS() {
     while(1) {
-        
-    }
-    while(!q.empty()) {
         queue<pair<int, pair<int, int>>> future;    
-        int z = q.front().first;
-        int y = q.front().second.first;
-        int x = q.front().second.second;
-            
-        q.pop();
 
-        for(int i = 0; i < 6; i++) {
-            int nz = z + dz[i];
-            int nx = x + dx[i];
-            int ny = y + dy[i];
+        while(!q.empty()) {
+            int z = q.front().first;
+            int y = q.front().second.first;
+            int x = q.front().second.second;
+            q.pop();
 
-            if(nx < 0 || nx >= n || ny < 0 || ny >= m || nz < 0 || nz >= h) continue;
-            if(vis[nz][ny][nx]) continue;
-            if(tomato[nz][ny][nx] == -1) continue;
+            for(int i = 0; i < 6; i++) {
+                int nz = z + dz[i];
+                int nx = x + dx[i];
+                int ny = y + dy[i];
 
-            future.push({nz, {ny, nx}});
-            vis[nz][ny][nx] = true;
+                if(nx < 0 || nx >= n || ny < 0 || ny >= m || nz < 0 || nz >= h) continue;
+                if(vis[nz][ny][nx]) continue;
+                if(tomato[nz][ny][nx] == -1) continue;
+
+                future.push({nz, {ny, nx}});
+                vis[nz][ny][nx] = true;
+            }
+
         }
-
         if(future.empty()) {
             for(int k = 0; k < h; k++) {
                 for(int i = 0; i < m; i++) {
@@ -56,9 +55,11 @@ void BFS() {
         q = future;
         cnt++;
     }
+    return;
 }
 
 int main() {
+    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
     cin >> n >> m >> h;
 
     int t = 0;
