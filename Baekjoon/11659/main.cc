@@ -2,25 +2,24 @@
 
 using namespace std;
 
-vector<int> num;
+vector<int> num(100001);
 
 int main() {
+    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);    
+    
     int n, m;
     cin >> n >> m;
-    for(int i = 0; i < n; i++) {
+    
+    num[0] = 0;
+    for(int i = 1; i <= n; i++) {
         int a;
         cin >> a;
-        num.push_back(a);
+
+        num[i] = num[i - 1] + a;
     }
-
     for(int i = 0; i < m; i++) {
-        int start, end;
-        int sum = 0;
-        cin >> start >> end;
-
-        for(int j = start - 1; j < end; j++) {
-            sum += j;
-        }
-        cout << sum << "\n";
+        int a, b;
+        cin >> a >> b;
+        cout << num[b] - num[a - 1] << "\n";
     }
 }
