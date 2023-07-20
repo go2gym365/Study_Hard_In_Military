@@ -30,7 +30,7 @@ int DFS(int y, int x, int cnt) {
     return sum;
 }
 
-int fxxkshape(int y, int x) {
+int fxxkshape(int y, int  x) {
     int ans = 0;
     
     //ㅗ
