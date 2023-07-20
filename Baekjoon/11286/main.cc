@@ -13,6 +13,8 @@ struct cmp {
 };
 
 int main() {
+    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    
     priority_queue<int, vector<int>, cmp> pq;
     
     int n;
@@ -26,7 +28,7 @@ int main() {
         }
         else {
             if(pq.empty()) {
-                pq.push(0);
+                cout << 0 << "\n";
             }
             else {
                 cout << pq.top() << "\n";
