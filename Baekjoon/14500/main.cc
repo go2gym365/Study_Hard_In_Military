@@ -34,13 +34,13 @@ int fxxkshape(int y, int  x) {
     int ans = 0;
     
     //ㅗ
-    if(x >= 1 && y >= 1 && x < m + 1)
+    if(x >= 1 && y >= 1 && x + 1 <= m)
         ans = max(ans, vec[y][x] + vec[y - 1][x] + vec[y][x - 1] + vec[y][x + 1]);
     //ㅏ
     if(x + 1 <= m && y + 1 <= n && y >= 1)
         ans = max(ans, vec[y][x] + vec[y - 1][x] + vec[y + 1][x] + vec[y][x + 1]);
     //ㅜ
-    if(x + 1 <= m && y + 1 <= n && y >= 1)
+    if(x >= 1 && y + 1 <= n && x + 1 <= m)
         ans = max(ans, vec[y][x] + vec[y][x - 1] + vec[y][x + 1] + vec[y + 1][x]);
     //ㅓ
     if(x >= 1 && y >= 1 && y + 1 <= n)
