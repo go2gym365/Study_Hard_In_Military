@@ -10,6 +10,7 @@ void calc(long long n, long long ten)
 		check[n % 10] += ten;
 		n /= 10;
 	}
+	return
 }
 
 
@@ -61,7 +62,7 @@ int main() {
     int n;
     cin >> n;
 
-    Solve(n);
+    calc(n);
 
     for(int i = 0; i < 10; i++) {
         cout << check[i] << " ";
