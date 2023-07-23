@@ -19,5 +19,18 @@ int main() {
         else if(maxHeap.size() == minHeap.size()) {
             maxHeap.push(a);
         }
+        else {
+            minHeap.push(a);
+        }
+
+        if(!maxHeap.empty() && !minHeap.empty() && maxHeap.top() > minHeap.top()) {
+            minHeap.push(maxHeap.top());
+            maxHeap.push(minHeap.top());
+            minHeap.pop();
+            maxHeap.pop();
+        }
+
+        cout << maxHeap.top() << "\n";;
      }
 }
+
