@@ -6,6 +6,8 @@ priority_queue<int, vector<int>, less<>> maxHeap;
 priority_queue<int, vector<int>, greater<>> minHeap;
 
 int main() {
+    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    
     int n;
     cin >> n;
      
