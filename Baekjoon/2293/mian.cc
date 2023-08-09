@@ -21,17 +21,6 @@ int solve(int sum, int idx) {
     return ret;
 }
 
-// int solve(int sum, int idx) {
-//     int ret = 0;
-//     if(sum == k) return 1;
-//     if(sum > k) return 0;
-
-//     for(int i = idx; i < n; i++) {
-//         ret += solve(sum + vec[i], i);
-//     }
-//     return ret;
-// }
-
 int main() {
     cin >> n >> k;
 
