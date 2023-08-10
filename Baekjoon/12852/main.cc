@@ -12,24 +12,31 @@ bool check = false;
 
 int solve(int num) {
     int &ret = dp[num];
-    if(num == 1){
-        check = true;
-         return 0;
-    }
+    if(num == 1) return 0;
     if(ret != -1) return ret;
+
     ret = INF;
     
-
-    ret = min(ret, solve(num - 1) + 1);
-    if(check) before[num] = num - 1;
+    int next = solve(num - 1) + 1;
+    if(next < ret) {
+        ret = next;
+        before[num] = num - 1;
+    }
 
     if(num % 3 == 0) {
-        ret = min(ret, solve(num / 3) + 1);
-        if(check) before[num] = num / 3;
+        int next = solve(num / 3) + 1;
+        if(next < ret) {
+            ret = next;
+            before[num] = num / 3;
+        }
     }
 
     if(num % 2 == 0) {
-        ret = min(ret, solve(num / 2) + 1);
+        int next = solve(num / 2) + 1;
+        if(next < ret) {
+            ret = next;
+            before[num] = num / 2;
+        }
     }
     
     return ret;
