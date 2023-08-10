@@ -8,30 +8,23 @@ const int INF = -987654321;
 vector<int> vec;
 int dp[1000001];
 
-// int solve(int idx) {
-//     int &ret = dp[idx];
-//     if(idx == n) return 0;
-//     if(ret != 0) return ret;
+int solve(int n) {
+    int ret;
+    ret = dp[0] = vec[0];
 
-//     ret = INF;
-
-//     for(int i = 0; i < n; i++) {
-//         for(int j = i + 1; j < n; j++) {
-//             ret = max(ret, vec[i] + solve(idx + j));
-//         }
-//     }
-// }
-
-int ans = -INF;
-
-int solve(int idx) {
-    for(int i = 0; i < n; i++) {
-        int temp = vec[i];
-        for(int j = i; j < n; j++) {
-            temp = max(temp, temp + vec[i]);
-            
-        }
+    for(int i = 1; i < n; i++){
+        dp[i] = max(dp[i - 1] + vec[i], vec[i]);
+        ret = max(ret, dp[i]);
     }
+    return ret;
+}
+
+int topDown(int cur) {
+    int &ret = dp[cur];
+    if(cur == 0) return 0;
+    if(ret != 0) return ret;
+
+    ret = max(vec[cur], vec[cur] + solve(cur - 1));
 }
 
 int main() {
@@ -45,5 +38,5 @@ int main() {
         vec.push_back(a);
     }
 
-    solve(0);
+    cout << solve(n);
 }
