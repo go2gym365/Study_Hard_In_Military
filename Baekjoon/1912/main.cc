@@ -25,10 +25,10 @@ int dp[1000001];
 int ans = -INF;
 
 int solve(int idx) {
-    if(idx == n) return 0;
-    
     for(int i = 0; i < n; i++) {
-        for(int j = i + 1; j < n; j++) {
+        int temp = vec[i];
+        for(int j = i; j < n; j++) {
+            temp = max(temp, temp + vec[i]);
             
         }
     }
