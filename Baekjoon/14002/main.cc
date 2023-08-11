@@ -2,43 +2,46 @@
 
 using namespace std;
 
-short n;
+int n;
 
-vector<short> vec;
+vector<int> vec;
 
-short dp[1001][1001];
-vector<short> trac;
+int dp[1001][1001];
+int trace[1001];
 
-short solve(short prev, short idx) {
+int solve(int prev, int idx) {
     if(idx == n) return 0;
-    short &ret = dp[prev][idx];
+    int &ret = dp[prev][idx];
     if(ret != -1) return ret;
 
     ret = 0;
 
-    for(short i = idx; i < n; i++) {
+    for(int i = idx; i < n; i++) {
         if(prev < vec[i]) {
-            trac.push_back(vec[i]);
+            trace[idx] = prev;
             ret = max(ret, solve(vec[i], idx + 1) + 1);
         }
     }
-
     return ret;
 }
 
-short main() {
+int main() {
     memset(dp, -1, sizeof(dp));
+    memset(trace, -1, sizeof(trace));
 
     cin >> n;
 
-    for(short i = 0; i < n; i++) {
-        short a;
+    for(int i = 0; i < n; i++) {
+        int a;
         cin >> a;
 
         vec.push_back(a);
     }
 
-    short ans = solve(0, 0);
-
+    int ans = solve(0, 0);
     cout << ans << "\n";
+
+    for(int i = 0; i < 15; i++) {
+        cout << trace[i] << " ";
+    }
 }
