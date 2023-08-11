@@ -8,15 +8,15 @@ vector<int> vec;
 int dp[1001][1001];
 
 int solve(int prev, int cnt) {
+    if(cnt == n) return 0;
     int &ret = dp[prev][cnt];
     if(ret != -1) return ret;
     ret = 0;
-    if(cnt == n-1) return 1;
 
 
     for(int i = cnt; i < n; i++) {
         if(prev < vec[i]) {
-            ret = max(ret, solve(vec[i], i + 1) + 1);
+            ret += max(ret, solve(vec[i], i + 1) + 1);
         }
     }
 
@@ -33,5 +33,5 @@ int main() {
         vec.push_back(a);
     }
 
-    cout << solve(0, 1);
+    cout << solve(0, 0);
 }

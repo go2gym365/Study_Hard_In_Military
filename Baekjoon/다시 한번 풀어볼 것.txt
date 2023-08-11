@@ -32,6 +32,10 @@ https://ansohxxn.github.io/stl/bound/
 디자인 패턴
 https://refactoring.guru/
 
+LIS NlogN
+https://seungkwan.tistory.com/8
+
+
 다 못푼문제 
 1107
 1389
