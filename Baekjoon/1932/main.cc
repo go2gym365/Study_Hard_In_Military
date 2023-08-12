@@ -6,7 +6,7 @@ int n;
 
 int dp[501][501];
 
-vector<vector<int>> vec;
+vector<int> vec[501];
 
 int solve(int floor, int idx) {
     if(floor == n) return 0;
@@ -15,12 +15,9 @@ int solve(int floor, int idx) {
 
     ret = 0;
 
-    for(int i = idx; i < n; i++) {
-        for(int j = 0; j < n; j++) {
-            ret = max(ret, solve(floor + 1, j) + vec[floor][idx]);
-            ret = max(ret, solve(floor + 1, j - 1) + vec[floor][idx]);
-        }
-    }
+    ret = max(ret, solve(floor + 1, idx) + vec[floor][idx]);
+    ret = max(ret, solve(floor + 1, idx - 1) + vec[floor][idx]);
+    
     return ret;
 }
 
@@ -29,7 +26,7 @@ int main() {
     cin >> n;
 
     for(int i = 0; i < n; i++) {
-        for(int j = 0; j < n; j++) {
+        for(int j = 0; j <= i; j++) {
             int a;
             cin >> a;
             vec[i].push_back(a);
