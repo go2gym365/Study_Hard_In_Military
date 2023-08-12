@@ -19,24 +19,18 @@ int main() {
         string date;
         cin >> date;
 
-        int dyear = (date[0] - '0') * 1000 + (date[1] - '0') * 100 + (date[2] - '0') * 10 + (date[3] - '0') ;
-        int dmonth = (date[5] - '0') * 10 + (date[6] - '0');
-        int dday = (date[8] - '0') * 10 + (date[9] - '0');
+        int dyear = (nowDate[0] - '0') * 1000 + (nowDate[1] - '0') * 100 + (nowDate[2] - '0') * 10 + (nowDate[3] - '0') ;
+        int dmonth = (nowDate[5] - '0') * 10 + (nowDate[6] - '0');
+        int dday = (nowDate[8] - '0') * 10 + (nowDate[9] - '0');
 
         if(year < dyear) {
             cnt++;
             continue;
         }
         else if(year == dyear) {
-            if(month < dmonth) {
-                cnt++;
-                continue;
-            }
+            if(month >= dmonth) cnt++;
             else if(month == dmonth) {
-                if(day <= dday) {
-                    cnt++;
-                    continue;
-                }
+                if(day >= dday) cnt++;
                 else continue;
             }
             else continue;
