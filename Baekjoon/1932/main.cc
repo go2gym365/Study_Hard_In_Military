@@ -16,7 +16,7 @@ int solve(int floor, int idx) {
     ret = 0;
 
     ret = max(ret, solve(floor + 1, idx) + vec[floor][idx]);
-    ret = max(ret, solve(floor + 1, idx - 1) + vec[floor][idx]);
+    ret = max(ret, solve(floor + 1, idx + 1) + vec[floor][idx]);
     
     return ret;
 }
