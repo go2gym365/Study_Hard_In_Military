@@ -31,7 +31,7 @@ int BFS(int n) {
     }
 
     if(maxCnt < cnt) {
-        answerCnt.clear();
+        answerCnt = vector<pair<int, int>>();
         answerCnt.push_back({n, cnt});
     }
     else if(maxCnt == cnt) {
