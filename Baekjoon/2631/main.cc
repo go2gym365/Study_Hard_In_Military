@@ -19,7 +19,6 @@ int solve(int now) {
             ret = max(ret, solve(i) + 1);
         }
     }
-
     return ret;
 }
 
