@@ -29,6 +29,8 @@ int solve(int now) {
     return ret;
 }
 
+int solve(int now, int next)
+
 int main() {
     memset(dp, -1, sizeof(dp));
 
