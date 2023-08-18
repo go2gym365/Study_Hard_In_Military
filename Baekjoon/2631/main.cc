@@ -12,7 +12,7 @@ int solve(int now) {
     if(now == n) return 0;
     int &ret = dp[now];
     if(ret != -1) return ret;
-    ret = 0;
+    ret = 1;
 
     for(int i = now + 1; i < n; i++) {
         if(vec[now] < vec[i]) {
