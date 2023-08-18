@@ -8,14 +8,21 @@ vector<int> vec;
 
 int dp[201];
 
+int calcMax() {
+    int ret = 0;
+    for(int i= 0; i < n; i++) {
+        ret = max(ret, dp[i]);
+    }
+    return ret;
+}
+
 int solve(int now) {
-    if(now == n) return 0;
     int &ret = dp[now];
     if(ret != -1) return ret;
     ret = 1;
 
-    for(int i = now + 1; i < n; i++) {
-        if(vec[now] < vec[i]) {
+    for(int i = 0; i < now; i++) {
+        if(vec[i] < vec[now]) {
             ret = max(ret, solve(i) + 1);
         }
     }
@@ -38,5 +45,5 @@ int main() {
         solve(i);
     }
 
-    cout << dp[n - 1];
+    cout << n - calcMax();
 }
