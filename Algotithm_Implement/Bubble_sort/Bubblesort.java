@@ -12,6 +12,8 @@ class Bubblesort {
         for(int a : bs.arr) {
             System.out.println(a);
         }
+
+        int i = 0;
     }
 
     public void bubbleSort() {
