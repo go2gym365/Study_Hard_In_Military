@@ -35,6 +35,8 @@ https://refactoring.guru/
 LIS NlogN
 https://seungkwan.tistory.com/8
 
+면접 공부
+https://gyoogle.dev/blog/
 
 다 못푼문제 
 1107
