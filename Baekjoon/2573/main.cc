@@ -1,96 +1,90 @@
 #include<bits/stdc++.h>
+ using namespace std;
 
-using namespace std;
-
-vector<vector<int>> v(301, vector<int>(301, 0));
-vector<vector<int>> cntv(301, vector<int>(301, 0));
-vector<vector<bool>> vis(301, vector<bool>(301, false));
-
-int n, m, result = 0;
+int n, m;
 
 int dx[4] = {-1, 0, 1, 0};
 int dy[4] = {0, -1, 0, 1};
 
-void DFS(int yy, int xx, int cnt) {
-    cntv[yy][xx] = cnt;
+vector<vector<int>> glacier(301, vector<int> (301, 0));
+vector<vector<int>> water(301, vector<int> (301, 0));
+vector<vector<bool>> vis(301, vector<bool> (301, false));
 
-    for(int i = 0; i < 4; i++) {
-        int nx = xx + dx[i];
-        int ny = yy + dy[i];
+void BFS(int yy, int xx) {
+    queue<pair<int, int>> q;
 
-        if (ny >= 0 && ny < n && nx >= 0 && nx < m)
-			if (v[ny][nx] && cntv[ny][nx] == 0) 
-				DFS(ny, nx, cnt);
-    }
-}
+    q.push({yy, xx});
 
-void melt_ice() {
-    int melt = 0;
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < m; j++) {
-            if(v[i][j] == 0) continue;
-            melt = 0;
-            for(int k = 0; k < 4; k++) {
-                int nx = j + dx[k];
-                int ny = i + dy[k];
-                if (v[ny][nx] == 0 && ny >= 0 && ny < n && nx >= 0 && nx < m)
-                    melt++;
+    while(!q.empty()) {
+        int x = q.front().second;
+        int y = q.front().first;
+
+        q.pop();
+
+        vis[y][x] = true;
+
+        for(int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+
+            if(glacier[ny][nx] == 0) {
+                water[y][x]++;
+                continue;
             }
-
-            if(v[i][j] < melt) continue;
-            else cntv[i][j] == v[i][j] - melt;
+            if(vis[ny][nx]) continue;
+            vis[ny][nx] = true;
+            q.push({ny, nx});
         }
     }
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < m; j++)
-            v[i][j] = cntv[i][j];
-    }    
 }
 
-int main() {
+void melting() {
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; j++) {
+            if(vis[i][j]) vis[i][j] = false;
+            glacier[i][j] -= water[i][j];
+            if(glacier[i][j] < 0) glacier[i][j] = 0;
+            water[i][j] = 0;
+        }
+    }
+}
+
+ int main() {
+    ios_base::sync_with_stdio(false); cout.tie(0); cin.tie(0);
+    int ans = 0;
     cin >> n >> m;
 
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < m; j++) {
-            cin >> v[i][j];
+            cin >> glacier[i][j];
         }
     }
+    
+     
+    bool check = false;
 
     while(1) {
-        //빙산이 몇조각인지 확인하기
-        fill(cntv.begin(), cntv.end(), vector<int> (301, 0));
+        //cnt > BFS를 몇번 돌았는지 체크 || 1이상이면 돌긴 했음 / 0이면 한번도 안돌았으니까 while문 탈출
         int cnt = 0;
         for(int i = 0; i < n; i++) {
-            for(int j = 0; i < m; j++) {
-                if(v[i][j] && cntv[i][j] == 0) {
-                    cnt++;
-                    DFS(i, j, cnt);
-                }
-            }
-        }
-        // 2. 두조각 이상인지 확인하기
-        if(cnt >= 2) {
-            cout << result << "\n";
-            return 0;
-        }
-
-        //3. 얼음 녹이기
-        fill(cntv.begin(), cntv.end(), vector<int>(301, 0));
-        melt_ice();
-
-        // 3. 얼음이 다 녹은지 확인
-        bool jud = false;
-        for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
-                if(v[i][j]) jud = true;
+                if(vis[i][j]) continue;
+                if(glacier[i][j] == 0) continue;
+                cnt++;
+                BFS(i, j);
             }
         }
-        if(jud == false) {
-            cout << 0 << "\n";
-            return 0;
+        if(cnt >= 2) {
+            check = true;
+            break;
         }
-
-        //카운트 추가
-        result++;
+        else if(cnt == 0) {
+            break;
+        }
+        melting();
+        ans++;
     }
-}
+
+    if(check) cout << ans;
+    else cout << 0;
+ }
