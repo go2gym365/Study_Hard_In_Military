@@ -33,12 +33,12 @@ int main() {
             sum += vec[end];
         } 
         else if(sum == m) {
-            cnt++;
-            
             end++;
             sum += vec[end];
+            sum -= vec[start];
+            start++;
         }
-        else if(sum >= m) {
+        else if(sum > m) {
             sum -= vec[start];
             start++;
         }
