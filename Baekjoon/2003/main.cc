@@ -18,7 +18,6 @@ int main() {
     int cnt = 0;
     int end = 0;
     int start = 0;
-
     int sum = vec[0];
 
     while(end < n) {
@@ -26,18 +25,15 @@ int main() {
             end++;
             sum += vec[end];
         }
-        else if(sum > m) {
-            sum -= vec[start];
-            start++;
-            if(start > end && start < n) {
-                end = start;
-                sum = vec[start];
-            }
-        }
         else if(sum == m) {
-            cnt++;
             end++;
             sum += vec[end];
+            sum -= vec[start];
+            start++;
+        }
+        else if(sum  > m) {
+            sum -= vec[start];
+            start++;
         }
     }
     cout << cnt;
