@@ -21,7 +21,7 @@ int main() {
 
     int sum = vec[0];
 
-    while(start <= end && end < n) {
+    while(end < n) {
         if(sum < m) {
             end++;
             sum += vec[end];
