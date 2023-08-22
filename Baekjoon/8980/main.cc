@@ -17,20 +17,21 @@ int main() {
         vec.push_back({{to, from}, cost});
     }
 
-    sort(vec.begin(), vec.end());
-
     for(int i = 0; i < n; i++) {
-        int maxCost = 0;
+        int maxValue = 0;
 
-        for(int j = vec[i].first.second; j < vec[i].first.first; i++) 
-            maxCost = max(maxCost, capacity[j]);
+        int from = vec[i].first.second;
+        int to = vec[i].first.first;
+        int cost = vec[i].second;
 
-        int val = min(vec[i].second, c - maxCost);
-        result += val;
-
-        for(int j = vec[i].first.second; j < vec[i].first.first; i++) {
-            capacity[j] += val;
+        for(int j = from; j < to; j++) {
+            maxValue = max(maxValue, cost);
         }
-    }    
+
+        
+    }
+
+    sort(vec.begin(), vec.end());
+ 
     cout << result;
 }
