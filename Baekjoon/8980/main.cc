@@ -6,6 +6,8 @@ vector<pair<pair<int, int>, int>> vec;
 int capacity[2001];
 
 int main() {
+    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    
     int result = 0;
     int n, c, m;
     cin >> n >> c >> m;
@@ -17,7 +19,9 @@ int main() {
         vec.push_back({{to, from}, cost});
     }
 
-    for(int i = 0; i < n; i++) {
+    sort(vec.begin(), vec.end());
+
+    for(int i = 0; i < m; i++) {
         int maxValue = 0;
 
         int from = vec[i].first.second;
@@ -25,13 +29,15 @@ int main() {
         int cost = vec[i].second;
 
         for(int j = from; j < to; j++) {
-            maxValue = max(maxValue, cost);
+            maxValue = max(capacity[j], maxValue);
         }
-
         
-    }
+        int left = min(cost, c-maxValue);
+        result += left;
 
-    sort(vec.begin(), vec.end());
- 
+        for(int j = from; j < to; j++) {
+            capacity[j] += left;
+        }
+    }
     cout << result;
 }
