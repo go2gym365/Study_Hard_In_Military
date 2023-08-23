@@ -8,31 +8,19 @@ vector<int> vec;
 
 int dp[1000001];
 
-/*int solve() {
-    for(int i = 0; i < n; i++) {
-        dp[i] = 1;
-        for(int j = 0; j < i; j++) {
-            if(vec[j] < vec[i]) {
-                dp[i] = max(dp[i], dp[j] + 1);
-            }
-        }
-    }
-
-    return dp[n - 1];
-}*/
-
-int solve(int left)
-
 int main() {
-    memset(dp, -1, sizeof(dp));
-
+    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    
+    int ans = -0x3f3f3f3f;
     cin >> n;
 
-    for(int i = 0; i < n; i++) {
+    for(int i = 1; i <= n; i++) {
         int a;
         cin >> a;
-        vec.push_back(a);
+
+        dp[a] = dp[a - 1] + 1;
+        ans = max(ans, dp[a]);
     }
-    
-    cout << n - solve();
+
+    cout << n - ans;
 }
