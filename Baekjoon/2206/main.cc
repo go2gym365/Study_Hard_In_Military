@@ -7,7 +7,7 @@ int dx[4] = {-1, 0, 1, 0};
 int dy[4] = {0, -1, 0, 1};
 
 vector<string> vec(1001, "");
-int vis[1001][1001][2];
+int vis[1001][1001][2] = {0, };
 
 int BFS(int yy, int xx) {
     queue<pair<pair<int, int>, int>> q;
@@ -30,17 +30,16 @@ int BFS(int yy, int xx) {
             int nx = x + dx[i];
 
             if(nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
-            if(vec[ny][nx] == 1 && crush == 1) {
+            if(vec[ny][nx] == '1' && crush == 1) {
                 vis[ny][nx][crush - 1] = vis[y][x][crush] + 1;
                 q.push({{ny, nx}, crush - 1});
             }
-            if(vec[ny][nx] == 0 && vis[ny][nx][crush] == 0) {
+            if(vec[ny][nx] == '0' && vis[ny][nx][crush] == 0) {
                 vis[ny][nx][crush] = vis[y][x][crush] + 1;
                 q.push({{ny, nx}, crush});
             }
         }
     }
-
     return -1;
 }
 
