@@ -1,0 +1,1 @@
+if(vec[ny][nx] == 1) continue;
