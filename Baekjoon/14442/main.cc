@@ -11,16 +11,16 @@ vector<string> vec(1001, "");
 int vis[1001][1001][11];
 
 int BFS() {
-    priority_queue<pair<pair<int, int>, int>> q;
+    queue<pair<pair<int, int>, int>> q;
 
-    vis[0][0][k] = 1;
+    vis[0][0][0] = 1;
 
-    q.push({{0, 0}, k});
+    q.push({{0, 0}, 0});
 
     while(!q.empty()) {
-        int y = q.top().first.first;
-        int x = q.top().first.second;
-        int cnt = q.top().second;
+        int y = q.front().first.first;
+        int x = q.front().first.second;
+        int cnt = q.front().second;
 
         q.pop();
 
@@ -34,9 +34,9 @@ int BFS() {
 
             if(nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
 
-            if(vec[ny][nx] == '1' && cnt > 0) {
-                vis[ny][nx][cnt - 1] = vis[y][x][cnt] + 1;
-                q.push({{ny, nx}, cnt - 1});
+            if(vec[ny][nx] == '1' && cnt < k) {
+                vis[ny][nx][cnt + 1] = vis[y][x][cnt] + 1;
+                q.push({{ny, nx}, cnt + 1});
             }
 
             if(vec[ny][nx] == '0' && vis[ny][nx][cnt] == 0) {
