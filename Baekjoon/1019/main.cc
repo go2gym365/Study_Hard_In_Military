@@ -2,69 +2,60 @@
 
 using namespace std;
 
-long long check[10] = {0, };
+long long numbers[10];
 
-void calc(long long n, long long ten)
+void calculate(int num, int increase)
 {
-	while (n > 0) {
-		check[n % 10] += ten;
-		n /= 10;
+	while (num)
+	{
+		numbers[num % 10] += increase;
+
+		num /= 10;
 	}
-	return
 }
 
-
-
-void solve(long long A, long long B, long long ten) {
-	// A를 ++ 시키면서 0을 만든다.
-	while (A % 10 != 0 && A <= B)
+void func(int start, int end, int placeOfnum)
+{
+	while (start % 10 && start <= end)
 	{
-		// A를 ++ 시킬때는 calc를 거쳐야한다.
-		calc(A, ten);
-		A++;
+		calculate(start, placeOfnum);
+
+		start++;
 	}
 
-	if (A > B) return;
-
-	while (B % 10 != 9 && B >= A)
-
+	if (start > end)
 	{
-
-		//B를 -- 시킬때는 calc를 거쳐야 한다.
-
-		calc(B, ten);
-
-		B--;
-
+		return;
 	}
 
+	while (end % 10 != 9 && start <= end)
+	{
+		calculate(end, placeOfnum);
 
+		end--;
+	}
 
-	long long cnt = (B / 10 - A / 10 + 1);
+	long long cnt = (end / 10 - start / 10 + 1);
 
-	//B-A +1 * 자리수 만큼 0~9에 각각 더해준다.
+	for (int i = 0; i < 10; i++)
+	{
+		numbers[i] += cnt * placeOfnum;
+	}
 
-	for (int i = 0; i < 10; ++i)
-
-		check[i] += cnt * ten;
-
-
-
-	// 다음자리 수를 계산위해 재귀함수 호출한다.
-
-	solve(A / 10, B / 10, ten * 10);
-
+	func(start / 10, end / 10, placeOfnum * 10);
 }
 
-int main() {
-    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+int main(void)
+{
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int n;
+	cin >> n;
+	
+	func(1, n, 1);
 
-    int n;
-    cin >> n;
-
-    calc(n);
-
-    for(int i = 0; i < 10; i++) {
-        cout << check[i] << " ";
-    }
+	for (int i = 0; i < 10; i++)
+	{
+		cout << numbers[i] << " ";
+	}
 }
