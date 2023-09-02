@@ -1,72 +1,66 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-bool vis[10000];
+int n, m, w;
+const int INF = 0x3f3f3f3f;
 
-void BFS(int a, int b)
-{
-    queue<pair<int, string>> q;
-    q.push(make_pair(a, ""));
-    vis[a] = true;
+vector<pair<int, int>> adj[501];
 
-    while (!q.empty())
-    {
-        int cur_num = q.front().first;
-        string cur_op = q.front().second;
-        q.pop();
+void bellman(int start, int target) {
+    //모든 정점까지의 최단거리 상한
+    vector<int> upper(501, INF);
+    bool update = false;
+    upper[start] = 0;
 
-        if (cur_num == b)
-        {
-            cout << cur_op << '\n';
-            return;
+    for (int iter = 0; iter < n; ++iter) {
+        update = false;
+        for(int here = 1; here <= n; ++here) {
+            for(int i = 0; i < adj[here].size(); i++) {
+                int cost = adj[here][i].first;
+                int there = adj[here][i].second;
+                if(upper[there] > upper[here] + cost) {
+                    upper[there] = upper[here] + cost;
+                    update = true;
+                }
+            }
         }
-
-        int D, S, L, R, temp;
-        // D 연산
-        D = (cur_num * 2) % 10000;
-        if (!vis[D])
-        {
-            vis[D] = true;
-            q.push(make_pair(D, cur_op + "D"));
-        }
-
-        // S 연산
-        S = cur_num - 1 < 0 ? 9999 : cur_num - 1;
-        if (!vis[S])
-        {
-            vis[S] = true;
-            q.push(make_pair(S, cur_op + "S"));
-        }
-
-        // L 연산
-        L = (cur_num % 1000) * 10 + (cur_num / 1000);
-        if (!vis[L])
-        {
-            vis[L] = true;
-            q.push(make_pair(L, cur_op + "L"));
-        }
-
-        // R 연산
-        R = cur_num / 10 + (cur_num % 10) * 1000;
-        if (!vis[R])
-        {
-            vis[R] = true;
-            q.push(make_pair(R, cur_op + "R"));
+        if(!update) {
+            cout << "NO" <<"\n";
+            break;
         }
     }
+    if(update)
+        cout << "YES" << "\n";
 }
 
 int main() {
-    int t;
-    cin >> t;
+    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    int tc;
+    cin >> tc;
 
-    for(int i = 0; i < t; i++) {
-        int start, end;
-        cin >> start >> end;
+    while (tc--) {
+        cin >> n >> m >> w;
 
-        memset(vis, false, sizeof(vis));
+        for (int i = 0; i <= n; i++) {
+            adj[i].clear();
+        }
 
-        BFS(start, end);
+        for (int i = 0; i < m; i++) {
+            int s, e, t;
+            cin >> s >> e >> t;
+
+            adj[s].push_back({t, e});
+            adj[e].push_back({t, s});
+        }
+
+        for (int i = 0; i < w; i++) {
+            int s, e, t;
+            cin >> s >> e >> t;
+
+            adj[s].push_back({-t, e});
+        }
+
+        bellman(1, n);
     }
 }
