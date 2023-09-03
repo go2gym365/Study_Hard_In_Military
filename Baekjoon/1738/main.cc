@@ -26,6 +26,7 @@ void bellman(int start, int end) {
                 if (dist[there] > dist[here] + cost) {
                     dist[there] = dist[here] + cost;
                     trace[there] = here;
+                    //
                     if (iter == n - 1 && vis[there])
                         check = true;
                 }
