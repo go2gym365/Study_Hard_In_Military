@@ -16,17 +16,18 @@ void bellman(int start, int end) {
     memset(dist, INF, sizeof(dist));
     dist[start] = 0;
 
+    //V-1번에 한번을 더 돌아서 음의 사이클이 있는지 확인
     for (int iter = 0; iter < n; ++iter) {
         for (int here = 1; here <= n; ++here) {
+            //연결되지 않은, 계산되지 않은 최단거리는 건너뛰기
             if (dist[here] == INF) continue;
-            
             for (auto &a : adj[here]) {
                 int there = a.first;
                 int cost = a.second;
                 if (dist[there] > dist[here] + cost) {
                     dist[there] = dist[here] + cost;
                     trace[there] = here;
-                    //
+                    // V-1번까지 돈 후 마지막 음의 사이클을 돌았는지 확인
                     if (iter == n - 1 && vis[there])
                         check = true;
                 }
