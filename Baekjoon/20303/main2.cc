@@ -12,7 +12,9 @@ vector<pair<int, int>> ans;
 int dp[30001][3001];
 
 int solve(int idx, int cnt) {
+    //그룹의 갯수
     for(int i = 1; i < ans.size(); i++) {
+        //울린 애들 수
         for(int j = 1; j < k; j++) {
             int curCost = ans[i].second;
             int curIdx = ans[i].first;
