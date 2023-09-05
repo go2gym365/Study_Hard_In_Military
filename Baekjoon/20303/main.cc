@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include <cstddef>
 
 using namespace std;
 
@@ -9,10 +10,10 @@ bool vis[30001];
 int value[30001];
 vector<pair<int, int>> ans;
 
-int dp[30001][3001];
+vector<vector<int>> dp;
 
 int solve(int idx, int cnt) {
-    if(idx >= ans.size()) return 0;
+    if(idx >= ans.size())   return 0;
     int &ret = dp[idx][cnt];
     if(ret != -1) return ret;
     ret = 0;
@@ -51,7 +52,6 @@ void BFS(int start) {
 }
 
 int main() {
-    memset(dp, -1, sizeof(dp));
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
     cin >> n >> m >> k;
 
@@ -73,6 +73,6 @@ int main() {
         if(vis[i]) continue;
         BFS(i);
     }
-
+    dp = vector<vector<int>>(ans.size()+1, vector<int>(k+1, -1));
     cout << solve(0, 0);
 }

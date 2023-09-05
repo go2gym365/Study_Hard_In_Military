@@ -15,21 +15,21 @@ int solve(int idx, int cnt) {
     //그룹의 갯수
     for(int i = 1; i < ans.size(); i++) {
         //울린 애들 수
-        for(int j = 1; j < k; j++) {
+        for(int j = 1; j <= k; j++) {
             int curCost = ans[i].second;
             int curIdx = ans[i].first;
 
-            if(curIdx < j)
-                dp[i][j] = max(dp[i - 1][j - curIdx] + curCost, dp[i - 1][j]);
-            else
+            if(curIdx > j)
                 dp[i][j] = dp[i - 1][j];
+            else
+                dp[i][j] = max(dp[i - 1][j - curIdx] + curCost, dp[i - 1][j]);
         }
     }
     return dp[ans.size() - 1][k - 1];
 }
 
 void BFS(int start) {
-    priority_queue<int> pq;
+    queue<int> pq;
 
     int save = value[start];
     int cnt = 1;
@@ -38,7 +38,7 @@ void BFS(int start) {
     vis[start] = true;
 
     while(!pq.empty()) {
-        int here = pq.top();
+        int here = pq.front();
         pq.pop();
         
         for(int i = 0; i < vec[here].size(); i++) {
@@ -71,9 +71,7 @@ int main() {
         vec[start].push_back(end);
         vec[end].push_back(start);
     }
-
     ans.push_back({0, 0});
-    
     for(int i = 1; i <= n; i++) {
         if(vis[i]) continue;
         BFS(i);
