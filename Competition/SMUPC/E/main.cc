@@ -16,7 +16,7 @@ int fy = 0;
 int startToFish(int yy, int xx) {
     queue<pair<int, int>> q;
     int count = 0;
-    //물고기 찾았는지
+    //물고기 찾았는지a
     bool find = false;
     q.push({yy, xx});
     vis[yy][xx] = true;
