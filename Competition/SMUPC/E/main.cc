@@ -3,96 +3,87 @@
 using namespace std;
 
 vector<string> vec(1001, "");
-bool vis[1001][1001];
+vector<vector<int>> vis(1001, vector<int>(1001, 0));
+
 
 int dx[4] = {-1, 0, 1, 0};
 int dy[4] = {0, -1, 0, 1};
-int n, m;
-int sttofi = 0;
-int fitoho = 0;
-int fx = 0;
-int fy = 0;
 
-int startToFish(int yy, int xx) {
-    queue<pair<int, int>> q;
-    int count = 0;
-    //물고기 찾았는지a
-    bool find = false;
-    q.push({yy, xx});
-    vis[yy][xx] = true;
-
-    while(true) {
-        //이동했는지?
-        bool move = false;
-        while(!q.empty()) {
-            int x = q.front().second;
-            int y = q.front().first;
-            q.pop();
-
-            if(vec[y][x] == 'F') {
-                find = true;
-                fx = x;
-                fy = y;
-                break;
-            }
-
-            for(int i = 0; i < 4; i++) {
-                int nx = x + dx[i];
-                int ny = y + dy[i];
-
-                if(nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
-                if(vis[ny][nx]) continue;
-                if(vec[ny][nx] == 'D') continue;
-                move = true;
-                q.push({ny, nx});
-                vis[ny][nx] = true;
-            }
-        }
-        if(find && !move) return count;
-        else if(!find && !move) return -1;
-        count++;
-    }    
-    return count;
-}
+ int n, m;
+ int fy = 0; int fx = 0;
+ int sy; int sx;
+ int staTofi = 0;
+ int fiToHo = 0;
 
 int fishToHome(int yy, int xx) {
     queue<pair<int, int>> q;
-    int count = 0;
-    //물고기 찾았는지
-    bool home = false;
+    vis[yy][xx] = 0;
+
     q.push({yy, xx});
-    vis[yy][xx] = true;
 
-    while(true) {
-        //이동했는지?
-        bool move = false;
-        while(!q.empty()) {
-            int x = q.front().second;
-            int y = q.front().first;
-            q.pop();
+    while(!q.empty()) {
+        int y = q.front().first;
+        int x = q.front().second;
 
-            if(vec[y][x] == 'H') {
-                home = true;
-                break;
-            }
+        q.pop();
 
-            for(int i = 0; i < 4; i++) {
-                int nx = x + dx[i];
-                int ny = y + dy[i];
+        if(vec[y][x] == 'H') {
+            return vis[y][x];
+        }
 
-                if(nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
-                if(vis[ny][nx]) continue;
-                if(vec[ny][nx] == 'D') continue;
-                move = true;
-                q.push({ny, nx});
-                vis[ny][nx] = true;
+        for(int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+
+            if(nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
+            if(vec[ny][nx] == 'D') continue;
+            if(vis[ny][nx] != 0) continue;
+            if(ny == fy && nx == fx) continue;
+            
+            q.push({ny, nx});
+            vis[ny][nx] = vis[y][x] + 1;
+        }
+    }
+    return -1;
+}
+
+int startToFish(int yy, int xx) {
+    queue<pair<int, int>> q;
+    int check = false;
+    int count = 0x3f3f3f3f;
+
+    q.push({yy, xx});
+
+    while(!q.empty()) {
+        int y = q.front().first;
+        int x = q.front().second;
+
+        q.pop();
+
+        if(vec[y][x] == 'F') {
+            check = true;
+            if(count > vis[y][x]) {
+                count = vis[y][x];
+                fx = x;
+                fy = y;
             }
         }
-        if(home && !move) return count;
-        else if(!home && !move) return -1;
-        count++;
-    }    
-    return count;
+
+        for(int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+
+            if(nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
+            if(vec[ny][nx] == 'D') continue;
+            if(vis[ny][nx] != 0) continue;
+            if(ny == sy && nx == sx) continue;
+            
+            q.push({ny, nx});
+            vis[ny][nx] = vis[y][x] + 1;
+        }
+    }
+    if(check) return count;
+    else return -1;
 }
 
 int main() {
@@ -103,28 +94,35 @@ int main() {
     }
 
     for(int i = 0; i < n; i++) {
-        bool move = false;
+        bool pen = false;
         for(int j = 0; j < m; j++) {
-            if(vec[i][j] = 'S') {
-                move = true;
-                sttofi =  startToFish(i, j);
-                if(sttofi == -1) {
+            if(vec[i][j] == 'S') {
+                pen = true;
+                staTofi = startToFish(i, j);
+                if(staTofi == -1) {
                     cout << -1;
                     return 0;
                 }
+                sy = i; sx = j;
             }
-            if(move) break;
         }
-        if(move) break;
+        if(pen) break;
     }
 
-    memset(vis, false, sizeof(vis));
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; j++) {
+            if(i <= fy && j <= fx) continue;
+            if(vis[i][j] == 0) continue;
+            vis[i][j] = 0;
+        }
+    }
 
-    fitoho = fishToHome(fy, fx);
-    if(fitoho == -1) {
+    fiToHo = fishToHome(fy, fx);
+    if(fiToHo == -1) {
         cout << -1;
-        return 0;
+        return -1;
     }
-
-    cout << sttofi + fitoho;
+    else {
+        cout << staTofi + fiToHo;
+    }
 }
