@@ -9,10 +9,10 @@ int n, m, r;
 int ans = -INF;
 
 vector<pair<int, int>> vec[101];
-vector<int> dist (101, INF);
 vector<int> value;
 
 int dijkstra(int start) {
+    vector<int> dist (n + 1, INF);
     priority_queue<pair<int, int>> pq;
 
     dist[start] = 0;

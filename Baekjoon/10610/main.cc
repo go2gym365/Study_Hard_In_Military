@@ -7,19 +7,18 @@ int main() {
     cin.tie(0);
     cout.tie(0);
     
-    vector<int> v;
-    int n;
     string str;
     cin >> str;
+    
+    //내림차순으로 정리하여 마지막에서 0을 판별
+    sort(str.begin(), str.end(), greater<>());
 
-    for(int i = 0; i < str.size(); i++) {
-        v.push_back(str[i] - '0');
-
+    if(str[str.size() - 1] != '0') {
+        cout << -1;
     }
-
-    sort(v.begin(), v.end(), greater<>());
-
-    if (str[str.size() - 1] == '0' && stoi(str) % 3 == 0)
-		cout << stoi(str);
-	else cout << -1;
+    else {
+        long long num = stoll(str);
+        if(num % 3 == 0) cout << str;
+        else cout << -1;
+    }
 }
