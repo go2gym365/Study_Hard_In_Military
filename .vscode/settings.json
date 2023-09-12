@@ -74,5 +74,6 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp"
-    }
+    },
+    "editor.tabSize": 4
 }
