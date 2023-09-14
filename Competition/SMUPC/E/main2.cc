@@ -98,13 +98,7 @@ int main() {
         bool pen = false;
         for(int j = 0; j < m; j++) {
             if(vec[i][j] == 'S') {
-                pen = true;
-                staTofi = startToFish(i, j);
-                if(staTofi == -1) {
-                    cout << -1;
-                    return 0;
-                }
-                sy = i; sx = j;
+                pen = truel
             }
         }
         if(pen) break;
