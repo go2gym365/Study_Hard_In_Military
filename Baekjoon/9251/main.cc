@@ -2,26 +2,35 @@
 
 using namespace std;
 
-int n, m, w;
-const int INF = 0x3f3f3f3f;
+int dp[1001][1001];
+string s1, s2;
 
-vector<pair<int, int>> vec[501];
-vector<int> dist(501, INF);
+int solve(int p, int q) {
+    if(p < 0 || q < 0) return 0;
+
+    int &ret = dp[p][q];
+    if(ret != -1) return ret;
+    
+    ret = 0;
+
+    if(p >= 0)
+        ret = max(ret, solve(p -1, q));
+    
+    if(s1[p] == s2[q])
+        ret = max(ret, solve(p-1, q-1) +1);
+    
+    if(q >= 0) 
+        ret = max(ret, solve(p, q-1));
+    
+    return ret;
+}
 
 int main() {
-    cin >> n >> m >> w;
-    int t;
-    cin >> t;
-    while (t--) {
-
-        for (int i = 0; i < m; i++) {
-            int s, e, c;
-            cin >> s >> e >> c;
-
-            vec[s].push_back({c, e});
-            vec[e].push_back({c, s});
-        }
-    }
-
+    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
     
+    memset(dp, -1, sizeof(dp));
+
+    cin >> s1 >> s2;
+
+    cout << solve(s1.length() - 1, s2.length() - 1);
 }
