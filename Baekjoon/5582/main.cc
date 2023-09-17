@@ -22,6 +22,7 @@ int solve(int s1, int s2) {
     }
 
     if(str1[s1] == str2[s2]) {
+        cout << s1 << " " << s2 << " " << ret << "\n";
         ret = max(ret, solve(s1 + 1, s2 + 1) + 1);
     }
 
