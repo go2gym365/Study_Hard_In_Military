@@ -11,6 +11,7 @@ bool vis[101][101];
 bool meltCnt[101][101];
 bool isAir[101][101]; //외부공기인지 체크
 
+// 치즈 외부에서 BFS를 돌면서 확인
 void isInsideAir() {
     queue<pair<int, int>> q;
     q.push({0, 0});
@@ -61,11 +62,13 @@ void BFS(int yy, int xx) {
             }
         }
         if(airCnt >= 2) {
+            //airCnt가 2이상이면 이후에 치즈 녹이기
             meltCnt[y][x] = true;
         }
     }
 }
 
+//치즈 녹이기
 void melt() {
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < m; j++) {
@@ -94,6 +97,7 @@ int main() {
     int answer = 0;
 
     while (true) {
+        //공기가 치즈 내부의 공기인지 외부의 공기인지 확인
         isInsideAir();
         memset(vis, false, sizeof(vis));
         bool cheeseCheck = false;
@@ -105,6 +109,7 @@ int main() {
                 }
             }
         }
+        //치즈를 한번도 한번도 안녹이면 루프빠지기
         if(!cheeseCheck) break;
         else melt();
         answer++;
