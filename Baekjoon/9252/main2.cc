@@ -4,7 +4,6 @@ using namespace std;
 
 string str1, str2;
 int dp[1001][1001];
-char trace[1001];
 
 void solve() {
     for(int i = 1; i <= str1.length(); i++) {
