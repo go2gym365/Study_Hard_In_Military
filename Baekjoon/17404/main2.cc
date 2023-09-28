@@ -5,10 +5,11 @@ using namespace std;
 int n;
 vector<int>input [1001];
 int dp[1001][3];
+int ans = 987645321;
 
 int main() {
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-    memset(dp, -1, sizeof(dp));
+    memset(dp, 0, sizeof(dp));
 
     cin >> n;
 
@@ -33,8 +34,17 @@ int main() {
             }
         }
 
-        for(int j = 2; j < n - 1; j++) {
-            
+        for(int j = 1; j < n; j++) {
+            dp[j][0] = input[j][0] + min(dp[j-1][1], dp[j-1][2]);
+            dp[j][1] = input[j][1] + min(dp[j-1][0], dp[j-1][2]);
+            dp[j][2] = input[j][2] + min(dp[j-1][0], dp[j-1][1]);
+        }
+
+        for(int i = 0; i < 3; i++) {
+            if(i == color) continue;
+            else ans = min(ans, dp[n-1][i]);
         }
     }
+
+    cout << ans;
 }
