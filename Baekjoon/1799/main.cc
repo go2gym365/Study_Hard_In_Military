@@ -5,8 +5,8 @@ using namespace std;
 int n;
 int ans[2];
 vector<vector<int>> chess(11, vector<int> (11, 0));
-int l[20];
-int r[20];
+int leftDia[20]; //왼쪽 대각선(/)
+int rightDia[20]; // 오른쪽 대각선(\)
 
 void solve(int row, int col, int cnt, int color) {
     if(col >= n) {
@@ -22,10 +22,10 @@ void solve(int row, int col, int cnt, int color) {
         return;
     }
 
-    if(chess[row][col] && !l[col - row + n - 1] && !r[row + col]) {
-        l[col - row + n - 1] = r[row + col] = 1;
+    if(chess[row][col] && !leftDia[col - row + n - 1] && !rightDia[row + col]) {
+        leftDia[col - row + n - 1] = rightDia[row + col] = 1;
         solve(row, col + 2, cnt+1, color);
-        l[col - row + n - 1] = r[row + col] = 0;
+        leftDia[col - row + n - 1] = rightDia[row + col] = 0;
     }
     solve(row, col+2, cnt, color);
 }
