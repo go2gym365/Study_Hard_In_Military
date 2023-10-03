@@ -6,7 +6,7 @@ const int INF = 0x3f3f3f3f;
 
 int n;
 int dp[16][1<<16]; //2^16
-vector<vector<int>> input(16, vector<int>(16, 0));
+int input[16][16];
 
 int dfs(int cur, int vis) {
     //기저 조건
@@ -19,9 +19,7 @@ int dfs(int cur, int vis) {
 
     int &ret = dp[cur][vis];
 
-    if(vis == (1<<n)-1) {
-        return ret;
-    }
+    if(ret != -1) return ret;
 
     ret = INF;
 
