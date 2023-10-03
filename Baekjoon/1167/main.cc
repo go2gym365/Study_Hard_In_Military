@@ -27,6 +27,31 @@ void DFS(int cur, int cost) {
     }
 }
 
+void BFS(int firstNode, int firstCost) {
+    queue<pair<int, int>> q;
+    q.push({firstNode, firstCost});
+    vis[firstNode] = true;
+
+    while(!q.empty()) {
+        int cur = q.front().first;
+        int cost = q.front().second;
+        vis[cur] = true;
+        q.pop();
+        
+        for(int i = 0; i < graph[cur].size(); i++) {
+            int next = graph[cur][i].first;
+            int ncost = graph[cur][i].second;
+
+            if(vis[next]) continue;
+            q.push({next, cost + ncost});
+            if(cost + ncost > maxCost) {
+                maxCost = cost + ncost;
+                deepestNode = next;
+            }
+        }
+    }
+}
+
 int main() {
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
     cin >> n;
@@ -44,11 +69,12 @@ int main() {
         }
     }
 
-    DFS(1, 0);
+    //DFS(1, 0);
+    BFS(1, 0);
     maxCost = 0;
     memset(vis, false, sizeof(vis));
 
-    DFS(deepestNode, 0);
-
+    //DFS(deepestNode, 0);
+    BFS(deepestNode, 0);
     cout << maxCost;
 }
