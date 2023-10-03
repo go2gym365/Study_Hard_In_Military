@@ -12,7 +12,7 @@ vector<vector<int>> dist(201, vector<int> (201, INF));
 double burn() {
     double shortestTime = INF;
     double longestTime, spentTime, remainLen;
-    int edgeLen;
+    int longestEdge;
 
     for(int start=1; start <= n; ++start) {
         //start 정점부터 태웠을 때 마지막 간선이 사라지는 시간
@@ -20,12 +20,12 @@ double burn() {
 
         for(int from = 1; from <= n; ++from) {
             for(int to = 1; to <= n; ++to) {
-                edgeLen = graph[from][to];
+                longestEdge = graph[from][to];
 
-                if(edgeLen != -1) { // from정점과 간선으로 연결되지 않은 경우
-                    remainLen = edgeLen - (dist[start][to] - dist[start][from]);
+                if(longestEdge != -1) { // from정점과 간선으로 연결되지 않은 경우
+                    remainLen = longestEdge - (dist[start][to] - dist[start][from]);
 
-                    //이미 불에 탄 경우
+                    //양쪽 끝에서 불이 붙은 경우
                     if(remainLen > 0) {
                         spentTime = (remainLen / 2) + dist[start][to];
                         longestTime = max(spentTime, longestTime);
@@ -67,6 +67,7 @@ int main() {
         graph[e][s] = graph[s][e];
     }
 
+    //플로이드로 최단거리 구하기
     floyd();
 
     cout << fixed;
