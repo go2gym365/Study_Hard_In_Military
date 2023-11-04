@@ -25,14 +25,17 @@ void solve(int y, int x, int size) {
     }
     
     if(check) {
+        //1, 2, 3
        solve(y, x, size / 3);
        solve(y, x + size / 3, size / 3);
        solve(y, x + 2*(size / 3), size/3);
-       
+
+        //4, 5, 6
        solve(y + size / 3, x, size/3);
        solve(y + size / 3, x + size / 3, size / 3);
        solve(y + size / 3, x + 2*(size / 3), size / 3);
-       
+
+        //7, 8, 9
        solve(y + 2*(size / 3), x, size / 3);
        solve(y + 2*(size / 3), x + size / 3, size / 3);
        solve(y + 2*(size / 3), x + 2*(size / 3), size / 3);
