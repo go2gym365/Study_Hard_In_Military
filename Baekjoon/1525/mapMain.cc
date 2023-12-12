@@ -9,7 +9,7 @@ int graph[3][3];
 map<string, int> m;
 
 string str = "";
-const answer = "123456780";
+const string answer = "123456780";
 
 
 int bfs() {
