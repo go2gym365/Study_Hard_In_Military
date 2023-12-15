@@ -77,7 +77,7 @@ void DoublyLinkedList::AddSomewhere(Node* node, int value) {
 void DoublyLinkedList::DeleteHead() {
     
     head->next = head->next->next;
-    delete(head->next);
+    delete(head->next->prev);
     head->next->prev = head;
 
     size--;
@@ -85,7 +85,7 @@ void DoublyLinkedList::DeleteHead() {
 
 void DoublyLinkedList::DeleteTail() {
     tail->prev = tail->prev->prev;
-    delete(tail->prev);
+    delete(tail->prev->next);
     tail->prev->next = tail;
 
     size--;
