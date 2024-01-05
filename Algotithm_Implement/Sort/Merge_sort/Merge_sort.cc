@@ -69,8 +69,6 @@ int main() {
     cin >> n;
 
     for (int i = 0; i < n; i++) {
-        // int a;
-        // cin >> a;
         arr.push_back(rand() % 100);
     }
 
@@ -83,7 +81,7 @@ int main() {
     mergeSort();
 
     finish = clock();
-    Print();
+    //Print();
     duration = (double)(finish - start) / CLOCKS_PER_SEC;
-    cout << duration << "초" << "\n";
+    cout << "Merge sort로 " << n << "개 원소 정렬에 걸린 시간 " << duration << "초" << "\n";
 }
