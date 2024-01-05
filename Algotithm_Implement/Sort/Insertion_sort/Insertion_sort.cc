@@ -1,32 +1,45 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 vector<int> arr;
-//해야함
-void Insertion_sort() {
-    for(int i = 0; i < arr.size(); i++) {
-        for(int j = 0; j < arr.size() - 1; j++) {
-            if(arr[j] > arr[j+1]) {
-                swap(arr[j], arr[j + 1]);
-            }
-        }
+
+void Print() {
+    for (int a : arr) {
+        cout << a << " ";
     }
+    cout << "\n";
+}
+
+void Insertion_sort() {
+    clock_t start, finish;
+    double duration;
+
+    start = clock();
+
+    for (int i = 1; i < arr.size(); i++) {
+        int target = arr[i];
+        int j = i - 1;
+        
+        while(j >= 0 && arr[j] > target) {
+            arr[j+1] = arr[j];
+            j = j - 1;
+        }
+        arr[j+1] = target;
+    }
+
+    finish = clock();
+
+    duration = (double)(finish - start) / CLOCKS_PER_SEC;
+
+    Print();
+    cout << duration << "초" << "\n";
 }
 
 int main() {
-    int n;
-    cin >> n;
-    
-    for(int i = 0; i < n; i++) {
-        int a;
-        cin >> a;
-        arr.push_back(a);
+    for (int i = 0; i < 2500; i++) {
+        arr.push_back(rand() % 100);
     }
 
     Insertion_sort();
-
-    for(int a : arr) {
-        cout << a << " ";
-    }
 }
