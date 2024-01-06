@@ -1,3 +1,2 @@
 
-    double duration;
-    start = clock();
+}
