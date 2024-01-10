@@ -20,7 +20,7 @@ private:
     Node *root;
 
 public:
-    BinaryTree();
+    BinaryTree() {root = nullptr;}
     ~BinaryTree() {}
 
     void addNode(int value);
@@ -35,10 +35,6 @@ public:
     void inOrderLogic(Node* node);
     void postOrderLogic(Node* node);
 };
-
-BinaryTree::BinaryTree() {
-    root = nullptr;
-}
 
 void BinaryTree::addNode(int value) {
     Node *newNode = new Node();
