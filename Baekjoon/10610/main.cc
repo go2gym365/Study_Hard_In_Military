@@ -3,22 +3,26 @@
 using namespace std;
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
-    cout.tie(0);
+    vector<int> nums;
     
+    int check = 0;
+
     string str;
     cin >> str;
-    
-    //내림차순으로 정리하여 마지막에서 0을 판별
-    sort(str.begin(), str.end(), greater<>());
 
-    if(str[str.size() - 1] != '0') {
-        cout << -1;
+    for(int i = 0 ; i < str.size() ; ++i){
+        nums.push_back(str[i]-'0');
     }
-    else {
-        long long num = stoll(str);
-        if(num % 3 == 0) cout << str;
-        else cout << -1;
+
+    sort(nums.rbegin() , nums.rend());
+
+    for(int i = 0 ; i < nums.size(); i++){
+        check += nums[i];
+    }
+    
+    if(check % 3 != 0) cout << -1; 
+    else if(nums[nums.size()-1] != 0) cout << -1;
+    else{
+        for(auto x : nums) cout << x;
     }
 }
