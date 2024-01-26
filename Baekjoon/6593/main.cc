@@ -4,7 +4,6 @@ using namespace std;
 
 int l, r, c;
 int sx, sy, sz;
-int ex, ey, ez;
 
 char building[31][31][31];
 bool vis[31][31][31];
@@ -27,7 +26,7 @@ int bfs() {
         
         q.pop();
         
-        if(z == ez && y == ey && x == ex) {
+        if(building[z][y][x] == 'E') {
             return cost;
         }
         
@@ -79,11 +78,6 @@ int main() {
                         sz = i;
                         sy = j;
                         sx = k;
-                    }
-                    else if(str[k] == 'E') {
-                        ez = i;
-                        ey = j;
-                        ex = k;
                     }
                 }
             }
