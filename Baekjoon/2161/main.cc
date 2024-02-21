@@ -4,7 +4,6 @@ using namespace std;
 
 int main() {
     deque<int> dq;
-    queue<int> q;
     
     int n;
     cin >> n;
@@ -14,20 +13,9 @@ int main() {
     }
     
     while(!dq.empty()) {
-        q.push(dq.back());
+        cout << dq.back();
         dq.pop_back();
-        
-        if(!dq.empty()) {
-            dq.push_front(dq.back());
-            dq.pop_back();
-        }
-        else {
-            break;
-        }
-    }
-    
-    while(!q.empty()) {
-        cout << q.front() << ' ';
-        q.pop();
+        dq.push_front(dq.back());
+        dq.pop_back();
     }
 }
